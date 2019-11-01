@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="UTF-8" />
+		<title>校内语文学习达标测评系统</title>
+		<meta name="description" itemprop="description" content="北京师范大学《中国教师》杂志社教育研究中心举办全国中小学语文综合能力测评"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<!--引入mui.css-->
+		<link rel="stylesheet" href="../share/common/css/base.css">
+		<link rel="stylesheet" href="../share/common/css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/clinicTest.css" />
+		<!--引入mui.js-->
+		<script src="../share/common/js/mui.min.js"></script>
+		<script src="../share/common/js/jquery-3.2.1.min.js"></script>
+		<script src="../share/common/js/vue.min.js"></script>
+		<script src="../share/common/js/goPage1.js"></script>
+		<script src="../share/common/js/HttpConnection.js"></script>
+	</head>
+
+	<body>
+		<div class="YDapp">
+			<!--头部-->
+			<!--<header class="header">
+				<a class="mui-icon mui-icon-back mui-action-back back"></a>
+			</header>-->
+			<div id="scroll" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<!--<img class="headImg" :src="imgUrl" alt="" />-->
+					<img class="headImg" :src="imgUrl" alt="" />
+					<ul class="listData">
+						<li v-for="(list,index) in listData" v-if="list.isClick == 1" @tap="goDetail('./testPage.html',list)">
+							<img :src="list.photoUrl" alt="" />
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<!--引入js文件-->
+	<script src="js/clinicTest.js"></script>
+	<!--手机打印-->
+	<script type="text/javascript">
+		mui.init({
+			swipeBack: false
+		});
+	</script>
+
+</html>

@@ -1,0 +1,127 @@
+.YDapp {
+	position: relative;
+}
+
+
+/* *
+ *	背景图样式
+ * */
+
+.YDapp .punchBg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	z-index: -1;
+}
+
+
+/* *
+ *	头部导航样式
+ * */
+
+.header {
+	width: 100%;
+	min-width: 3.2rem;
+	max-width: 7.5rem;
+	background: #FFFFFF;
+	height: .6rem;
+	line-height: .6rem;
+	top: 0;
+	right: 0;
+	left: 0;
+	margin: auto;
+}
+
+.header a {
+	color: #000;
+	font-weight: 100;
+	font-size: .5rem;
+	height: 0.8rem;
+}
+
+
+/* * 
+ * 头部标题
+ * */
+
+.header .mui-title {
+	height: 0.8rem;
+	line-height: 0.8rem;
+	color: #000;
+}
+
+
+/* * 
+ * 头部分享
+ * */
+
+.header .share {
+	margin-right: .1rem;
+}
+
+.header .share img {
+	width: .4rem;
+	height: .4rem;
+}
+
+#scroll {
+	width: 100%;
+	height: 100vh;
+	position: relative !important;
+}
+
+.listData {
+	width: 100%;
+}
+
+.listData li {
+	width: 100%;
+	height: .6rem;
+	position: relative;
+	font-size: 0;
+	line-height: 0;
+	border-bottom: 1px solid #CCCCCC;
+	padding: 0rem 0.1rem;
+}
+.listData li .uploadImgBox {
+	display: flex;
+	justify-items: flex-start;
+	align-items: center;
+}
+.listData li .uploadInfo {
+	max-width: 68%;
+	display: flex;
+	flex-direction: column;
+}
+.listData li p {
+	width: 100%;
+	margin-bottom: 0;
+	height: .4rem;
+	line-height: .4rem;
+	color: #000000;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.listData li p.date {
+	height: .2rem;
+	line-height: .2rem;
+	color: #999;
+	font-size: 12px;
+}
+
+
+
+.listData li .uploadImg {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: .05rem 0.03rem;
+}
+
+.listData li .uploadImg img {
+	width: .5rem;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>校内语文学习达标测评系统</title>
+		<meta name="description" itemprop="description" content="北京师范大学《中国教师》杂志社教育研究中心举办全国中小学语文综合能力测评"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<!--引入mui.css-->
+		<link rel="stylesheet" href="../share/common/css/base.css">
+		<link rel="stylesheet" href="../share/common/css/mui.min.css">
+		<link rel="stylesheet" href="../share/common/css/mui.picker.min.css">
+		<link rel="stylesheet" type="text/css" href="css/topicList.css" />
+		<!--引入mui.js-->
+		<script src="../share/common/js/mui.min.js"></script>
+		<script src="../share/common/js/mui.picker.min.js"></script>
+		<script src="../share/common/js/jquery-3.2.1.min.js"></script>
+		<!--公共的脚本文件-->
+		<script src="../share/common/js/vue.min.js"></script>
+		<script src="../share/common/js/goPage1.js"></script>
+		<script src="../share/common/js/_address.js"></script>
+		<script src="../share/common/js/HttpConnection.js"></script>
+	</head>
+
+	<body>
+		<div class="YDapp">
+			<ul class="tiType">
+				<li v-for="(list,index) in listData" @tap="goTestPaper(list,list.typeId,index)">
+					<img v-if="list.photo" :src="list.photo" alt="" />
+				</li>
+			</ul>
+			<div class="maskZ" id="maskZ">
+				<!--弹框--> 
+				<div class="frameZ">
+					<!--提示语-->
+					<div class="describeZ" style="margin-bottom: .1rem">
+						<div class="tipsZ">温馨提示</div>
+						<div class="explainZ">
+							强制退出答题不保留本次信息,最次测
+							<br>评要重新开始,过今晚24时激活码失效!
+						</div>
+					</div> 
+					<!--按钮-->
+					<div class="btnZf">
+						<div class="btnZ1" @tap="closeMaskZ()">取消</div>
+						<div class="btnZ2" @click="goBack()">确认</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/topicList.js"></script>
+	<!--手机端打印-->
+	<script type="text/javascript">
+		mui.init();
+	</script>
+
+</html>

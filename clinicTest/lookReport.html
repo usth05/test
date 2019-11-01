@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>校内语文学习达标测评报告</title>
+		<meta name="description" itemprop="description" content="北京师范大学《中国教师》杂志社教育研究中心举办全国中小学语文综合能力测评"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<!--引入mui.css-->
+		<link rel="stylesheet" href="../share/common/css/base.css">
+		<link rel="stylesheet" href="../share/common/css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/lookReport.css" />
+		<!--引入mui.js-->
+		<script src="../share/common/js/mui.min.js"></script>
+		<!--手机端打印-->
+		<script src="../share/common/js/jquery-3.2.1.min.js"></script>
+		<!--公共的脚本文件-->
+		<script src="../share/common/js/vue.min.js"></script>
+		<script src="../share/common/js/goPage1.js"></script>
+		<script src="../share/common/js/HttpConnection.js"></script>
+	</head>
+
+	<body>
+		<div class="YDapp">
+			<!--头部-->
+			<!--<header class="mui-bar mui-bar-nav header">
+				<a class="mui-icon mui-icon-left-nav mui-action-back mui-pull-left"></a>
+				<h1 class="mui-title">{{topName}}报告</h1>
+			</header>-->
+			<div id="scroll" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="listData">
+						<li v-for="(list,index) in listData">
+							<div class="uploadInfo" style="float: left">
+								<p>第{{list.ord}}次测试报告</p>
+								<p class="date">{{list.date}}</p>
+							</div>
+							<div class="uploadImgBox" style="float: right">
+								<div class="uploadImg" v-if="list.info" @tap="uploadReport(list.info)">
+									<img :src="list.info?'img/download1.png':'img/generation1.png'" />
+								</div>
+								<div class="uploadImg" @tap="uploadReport(list.infos)">
+									<img :src="list.infos?'img/download.png':'img/generation.png'" />
+								</div>
+							</div>
+						</li>
+						<img style="width: 100%;" src="img/cpbgInit.png" v-if="listData.length==0" />
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<!--引入js文件-->
+	<script src="js/lookReport.js" type="text/javascript" charset="utf-8"></script>
+	<!--手机打印-->
+	<script type="text/javascript">
+		mui.init({
+			swipeBack: false
+		});
+		mui('.mui-scroll-wrapper').scroll({
+			deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+		});
+	</script>
+
+</html>

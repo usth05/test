@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>校内学习达标测评系统</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta itemprop="name" content="校内学习达标测评系统"/>
+	<meta name="description" itemprop="description" content="本测评旨在为小学生提供校内语文单元基础知识点是否全面掌握的必备工具。采用“听、说、读、写、背、记、悟、践”八个维度。" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="HandheldFriendly" content="true" />
+	<meta name="MobileOptimized" content="320" />
+	<!--引入mui.css-->
+	<link rel="stylesheet" href="../share/common/css/base.css">
+	<link rel="stylesheet" href="../share/common/css/mui.min.css">
+	<link rel="stylesheet" type="text/css" href="css/remindPage.css" />
+	<!--引入mui.js-->
+	<script src="../share/common/js/mui.min.js"></script>
+	<!--公共的脚本文件-->
+	<script src="../share/common/js/vue.min.js"></script>
+	<script src="../share/common/js/goPage1.js"></script>
+	<script src="../share/common/js/HttpConnection.js"></script>
+	<script src="../share/common/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+	<div class="YDapp">
+		<!-- 侧边栏区域 -->
+		<img style="width: 100%" :src="list.promptPhoto" alt="">
+		<audio id="audio" loop autoplay :src="list.promptAudio"></audio>
+		<div class="goBox">
+			<p @tap="goTestPaper()" style="background: #fA6814;color: #fff;">准备好了吗</p>
+		</div>
+		
+	</div>
+</body>
+<script src="js/remindPage.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	//var vConsole = new VConsole();
+	mui.init();
+</script>
+
+</html>

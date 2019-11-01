@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>校内语文学习达标测评系统</title>
+		<meta name="description" itemprop="description" content="北京师范大学《中国教师》杂志社教育研究中心举办全国中小学语文综合能力测评"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<!--引入mui.css-->
+		<link rel="stylesheet" href="../share/common/css/base.css">
+		<link rel="stylesheet" href="../share/common/css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/selectGrade.css" />
+		<link href="../share/common/css/mui.picker.min.css" rel="stylesheet" />
+		<link href="../share/common/css/mui.poppicker.css" rel="stylesheet" />
+		<!--引入mui.js-->
+		<script src="../share/common/js/mui.min.js"></script>
+		<script src="../share/common/js/mui.picker.min.js"></script>
+		<script src="../share/common/js/mui.poppicker.js"></script>
+		<script src="../share/common/js/jquery-3.2.1.min.js"></script>
+		<!--公共的脚本文件-->
+		<script src="../share/common/js/vue.min.js"></script>
+		<script src="../share/common/js/goPage1.js"></script>
+		<script src="../share/common/js/_address.js"></script>
+		<script src="../share/common/js/HttpConnection.js"></script>
+	</head>
+
+	<body>
+		<div class="YDapp">
+			<!--头部-->
+			<!-- <header class="mui-bar mui-bar-nav header">
+				<a class="mui-icon mui-icon-left-nav mui-pull-left" @tap="goBack()" style="color: #000000;font-weight: 100;font-size: .4rem;"></a>
+				<h1 class="mui-title">确认信息</h1>
+			</header> -->
+
+			<!--题型列表-->
+				<div id="userVerification" class="userVerification">
+					<div class="info_box">
+						<span class="leftInfo">性别:</span>
+						<p class="rightContent" @tap="sexSelect()">{{sex}}</p>
+						<i class="rightArrowr mui-icon mui-icon-arrowright"></i>
+					</div>
+					<div v-show="isTypea==1" class="info_box">
+						<span class="leftInfo">类别:</span>
+						<p class="rightContent" @tap="oneNameSelect()">{{oneName}}</p>
+						<i class="rightArrowr mui-icon mui-icon-arrowright"></i>
+					</div>
+					<div v-show="isTypeb==1" class="info_box">
+						<span class="leftInfo">类型:</span>
+						<p class="rightContent" @tap="twoNameSelect()">{{twoName}}</p>
+						<i class="rightArrowr mui-icon mui-icon-arrowright"></i>
+					</div>
+					<div v-show="typeOne" class="info_box">
+						<span class="leftInfo">{{typeOne}}:</span>
+						<p class="rightContent" @tap="typeOneSelect()">{{typeOneText?typeOneText:'请选择'}}</p>
+						<i class="rightArrowr mui-icon mui-icon-arrowright"></i>
+					</div>
+					<div v-show="typeOneText&&typeTwo" class="info_box">
+						<span class="leftInfo">{{typeTwo}}:</span>
+						<p class="rightContent" @tap="typeTwoSelect()">{{typeTwoText?typeTwoText:'请选择'}}</p>
+						<i class="rightArrowr mui-icon mui-icon-arrowright"></i>
+					</div>
+					<div v-show="typeTwoText&&typeThree" class="info_box">
+						<span class="leftInfo">{{typeThree}}:</span>
+						<p class="rightContent" @tap="typeThreeSelect()">{{typeThreeText?typeThreeText:'请选择'}}</p>
+						<i class="rightArrowr mui-icon mui-icon-arrowright"></i>
+					</div>
+					<div class="btnBox">
+						<div class="btn mui-action-back">取消</div>
+						<div class="btn submit" @tap="submit()">确认</div>
+					</div>
+				</div>
+		</div>
+	</body>
+	<script src="js/selectGrade.js"></script>
+	<!--手机端打印-->
+	<script type="text/javascript">
+		mui.init();
+	</script>
+
+</html>

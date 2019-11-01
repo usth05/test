@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>校内学习达标测评系统</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="description" itemprop="description" content="北京师范大学《中国教师》杂志社教育研究中心举办全国中小学语文综合能力测评"/>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="HandheldFriendly" content="true" />
+	<meta name="MobileOptimized" content="320" />
+	<!--引入mui.css-->
+	<link rel="stylesheet" href="../share/common/css/base.css">
+	<link rel="stylesheet" href="../share/common/css/mui.min.css">
+	<link rel="stylesheet" type="text/css" href="css/advertisingList.css" />
+	<!--引入mui.js-->
+	<script src="../share/common/js/mui.min.js"></script>
+	<!--公共的脚本文件-->
+	<script src="../share/common/js/vue.min.js"></script>
+	<script src="../share/common/js/goPage1.js"></script>
+	<script src="../share/common/js/HttpConnection.js"></script>
+	<script src="../share/common/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+	<div class="YDapp">
+		<!-- 侧边栏区域 -->
+		<div class="myWrapBox">
+			<div class="myWrap">
+				<img :src="item.photo" v-for="(item,index) in listData" @tap="wrapTab(index)">
+			</div>
+		</div>
+		
+		<!--<div class="wrap">
+				<img :src="rightWrap" alt="" />
+			</div>-->
+		<div id="slider" class="mui-slider wrap">
+			<div class="mui-slider-group mui-slider-loop">
+				<!--第一个内容区容器-->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<img :src="lastPhoto" alt="" />
+				</div>
+				<div class="mui-slider-item" v-for="(list,index) in listData">
+					<img :src="list.photoInfo" alt="" />
+				</div>
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<img :src="firstPhoto" alt="" />
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="js/advertisingList.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	//var vConsole = new VConsole();
+	mui.init();
+</script>
+
+</html>

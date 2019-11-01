@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>校内语文学习达标测评系统</title>
+		<meta name="description" itemprop="description" content="北京师范大学《中国教师》杂志社教育研究中心举办全国中小学语文综合能力测评"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<!--引入mui.css-->
+		<link rel="stylesheet" href="../share/common/css/base.css">
+		<link rel="stylesheet" href="../share/common/css/mui.min.css">
+		<link href="../share/common/css/mui.picker.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/writePage.css" />
+		<!--引入mui.js-->
+		<script src="../share/common/js/mui.min.js"></script>
+		<script src="../share/common/js/mui.picker.min.js"></script>
+		<script src="../share/common/js/jquery-3.2.1.min.js"></script>
+		<!--公共的脚本文件-->
+		<script src="../share/common/js/vue.min.js"></script>
+		<script src="../share/common/js/goPage1.js"></script>
+		<script src="../share/common/js/_address.js"></script>
+		<script src="../share/common/js/HttpConnection.js"></script>
+	</head>
+
+	<body>
+		<div class="YDapp">
+			<img class="clinicTest" src="img/clinicTest.png" alt="" />
+			<!--题型列表-->
+			<div id="questionBox" class="mui-content">
+				<p id="seconds_box"></p>
+				<p id="seconds">{{seconds}}</p>
+				<div v-show="currentData.videoUrl" class="problemBoxVideo">
+					<video style="width: 100%;height: 100%" :src="currentData.videoUrl" preload="auto" controlslist="nodownload" oncontextmenu="return(false)" controls="controls" autoplay>
+				</div>
+				<div v-show="currentData.audioUrl" class="problemBoxAudio" style="padding: 0;">
+					<audio autoplay="autoplay" style="display: none;" id="audio" :src="currentData.audioUrl"></audio>
+				</div>
+				<div v-show="currentData.question" class="textBox">
+					<p class="number">{{currentData.index}}.</p>
+					<div class="problem" v-html="currentData.question"></div>
+				</div>
+			</div>
+			<div id="questionBox1">
+				<div class="selectHeader">
+					<img src="img/xie.png" style="width: .2rem;" />
+					<span style="margin-left: .04rem;">填空输入框</span>
+				</div>
+				<div class="selectBox">
+					<textarea class="userAnswer" rows="3" placeholder="请输入答案" v-if="currentData.question" v-model="userAnswer"></textarea>
+                </div>
+			</div>
+
+			<div class="btnBox">
+				<p class="number">当前:{{currentIndex}}/{{listDataNum}}</p>
+				<p v-show="isSubmit" @tap="submit()" class="canClick">提交</p>
+				<p v-show="!isSubmit" class="canClick" @tap="selecedFun()">下一题</p>
+			</div>
+			<div style="width: 100%;height: .3rem;"></div>
+			<!--蒙版-->
+			<div class="maskZ" id="maskZ">
+				<!--弹框-->
+				<div class="frameZ">
+					<!--提示语-->
+					<div class="describeZ">
+						<div class="tipsZ">温馨提示</div>
+						<div class="explainZ">
+							小伙伴们,尽量一次性答完哦,养成良
+							<p>好的学习答题习惯,确定要退出吗?</p>
+						</div>
+					</div>
+					<!--按钮-->
+					<div class="btnZf">
+						<div class="btnZ1" @tap="closeMaskZ()">取消</div>
+						<div class="btnZ2" @tap="goBack()">确认</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<!-- <script src="../share/commonjs/html5video.js"></script> -->
+	<script src="js/writePage.js"></script>
+	<!--手机端打印-->
+	<script type="text/javascript">
+		mui.init({
+			swipeBack: true //启用右滑关闭功能  
+		});
+	</script>
+
+</html>

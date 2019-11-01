@@ -1,0 +1,121 @@
+/*
+ *	createTime:2019年7月16日  星期四  18:00
+ * 	author	  :sth
+ * 	link	  :topicList(试题分类页面)
+ */
+
+.YDapp {
+	position: relative;
+}
+
+html {
+	background: #FFFFFF;
+}
+
+body {
+	background: #FFFFFF;
+}
+
+
+/* *
+ *	头部导航样式
+ * */
+
+.header {
+	width: 100%;
+	max-width: 7.5rem;
+	min-width: 3.2rem;
+	position: fixed;
+	height: .8rem;
+	background: transparent;
+	box-shadow: none;
+	border-top: none;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+
+.header a {
+	color: #000;
+	font-weight: 100;
+	font-size: .5rem;
+	height: .8rem;
+	line-height: .6rem;
+}
+
+
+/* * 
+ * 头部标题
+ * */
+
+.header .mui-title {
+	height: 0.8rem;
+	line-height: 0.8rem;
+	color: #000;
+}
+
+.userVerification {
+	width: 100%;
+	max-width:7.5rem;
+	min-width:3.2rem;
+	height: 100vh;
+	position: fixed;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: #FFFFFF;
+}
+
+.userVerification .info_box {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-bottom: 0;
+	height: .6rem;
+	border-bottom: 1px solid #EFEFEF;
+	padding: 0 .1rem;
+}
+
+.userVerification .info_box .leftInfo {
+	width: 20%;
+	font-size: 18px;
+}
+
+.userVerification .info_box .rightContent {
+	width: 80%;
+	height: .8rem;
+	margin-bottom: 0;
+	padding: .1rem;
+	text-align: right;
+	line-height: .6rem;
+}
+
+.userVerification .info_box .rightArrowr {
+	font-size: 16px;
+	color: #999;
+}
+
+.btnBox {
+	width: 100%;
+	height: .6rem;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	position: absolute;
+	bottom: 0;
+}
+
+.btnBox .btn {
+	width: 50%;
+	height: .6rem;
+	background: #EFEFEF;
+	font-size: 16px;
+	text-align: center;
+	line-height: .6rem;
+}
+
+.btnBox .submit {
+	background: #FA6814;
+	color: #FFFFFF;
+}

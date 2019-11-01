@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>服务条款</title>
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="../share/common/css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="../share/common/css/base.css">
+	<link href="css/sign.css" rel="stylesheet" />
+	<script src="../share/common/js/mui.min.js"></script>
+	<script src="../share/common/js/vue.min.js"></script>
+	<script src="../share/common/js/HttpConnection.js"></script>
+	<script src="../share/common/js/jquery-3.2.1.min.js"></script>
+	<script src="../share/common/js/md5.js"></script>
+	<script src="../share/common/js/goPage1.js"></script>
+	<script src="../share/common/js/_address.js"></script>
+</head>
+
+<body>
+	<div class="YDapp" style="margin-top: 0;padding: 0">
+		<!--头部-->
+		<header class="mui-bar mui-bar-nav header">
+			<a class="mui-icon mui-icon-left-nav mui-action-back back"></a>
+			<h1 class="mui-title">服务条款</h1>
+		</header>
+		<div v-html="info" style="font-size: .24rem"></div>
+	</div>
+
+	<script src="js/serverRules.js"></script>
+	<script type="text/javascript">
+		mui.init();
+//			 var vConsole = new VConsole();
+	</script>
+</body>
+
+</html>

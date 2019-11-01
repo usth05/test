@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="../share/common/css/base.css">
+    <link href="../share/common/css/mui.min.css" rel="stylesheet" />
+	<link href="css/login.css" rel="stylesheet" />
+	<script src="../share/common/js/mui.min.js"></script>
+	<script src="../share/common/js/vue.min.js"></script>
+	<script src="../share/common/js/HttpConnection.js"></script>
+	<script src="../share/common/js/goPage1.js"></script>
+	<script src="../share/common/js/_address.js"></script>
+	<script src="../share/common/js/vconsole.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/md5.js"></script>
+</head>
+
+<body>
+	<div class="YDapp">
+		<!--头部-->
+		<!--<header class="mui-bar mui-bar-nav header">
+			<a class="mui-icon mui-icon-left-nav mui-action-back mui-pull-left back"
+				style="color: #FA6814;font-size: .3rem;">
+			</a>
+			<h1 class="mui-title">登录</h1>
+		</header>-->
+
+		<!--主体-->
+		<div class="main">
+			<div class="phone mui-row">
+				<label class="mui-col-xs-1"></label>
+				<input class="mui-col-xs-10" id="tel" type="tel" placeholder="请输入您的手机号" @focus.stop="focusss($event)"
+					@blur.stop="blurss($event)">
+				<img class="delete" src="images/delete.png" @tap.stop="delete1($event)">
+			</div>
+			<div class="phone mui-row password">
+				<label class="mui-col-xs-1"></label>
+				<input class="mui-col-xs-10" id="password" type="password" placeholder="请输入6-20位数字或字母"
+					@focus.stop="focusss($event)" @blur.stop="blurss($event)">
+				<img class="delete" src="images/delete.png" style="right:1.8rem;display: none;">
+				<img class="lookPassword" :src="imageNav" @tap.stop="look($event)">
+			</div>
+			<div class="forget">
+				<span class="lt">
+					还没有账号，去
+					<button type="button" class="mui-btn mui-btn-outlined mybtn1" @tap="goSign()">测评注册</button>
+				</span>
+				<button type="button" class="mui-btn mui-btn-outlined mybtn2" @tap="goForget()">忘记密码</button>
+			</div>
+			<div class="login">
+				<img src="images/mobilephone.png" @tap.stop="maskZ()" alt="" />
+				<button class="btn" @tap.stop="set()">测评登录</button>
+			</div>
+			<!--蒙版-->
+			<div class="maskZ" id="maskZ">
+				<!--弹框-->
+				<div class="frameZ">
+					<!--提示语-->
+					<div class="describeZ">
+						<div class="tipsZ">温馨提示</div>
+						<div class="explainZ">
+							全国咨询服务热线:18167140039
+							<p>咨询时间：周一至周五 10:00-17:00<br /> 亦可添加服务中心微信号:18167140039</p>
+						</div>
+					</div>
+					<!--按钮-->
+					<div class="btnZf">
+						<div class="btnZ1" @tap="closeZ()">取消</div>
+						<div class="btnZ2" @tap="dialTest()">确认</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/login.js"></script>
+	<script type="text/javascript">
+		mui.init();
+
+	</script>
+</body>
+
+</html>

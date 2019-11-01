@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>校内语文学习达标测评系统</title>
+		<meta name="description" itemprop="description" content="北京师范大学《中国教师》杂志社教育研究中心举办全国中小学语文综合能力测评"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<!--引入mui.css-->
+		<link rel="stylesheet" href="../share/common/css/base.css">
+		<link rel="stylesheet" href="../share/common/css/mui.min.css">
+		<link href="../share/common/css/mui.picker.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/essayPage.css" />
+		<!--引入mui.js-->
+		<script src="../share/common/js/mui.min.js"></script>
+		<script src="../share/common/js/mui.picker.min.js"></script>
+		<script src="../share/common/js/jquery-3.2.1.min.js"></script>
+		<!--公共的脚本文件-->
+		<script src="../share/common/js/vue.min.js"></script>
+		<script src="../share/common/js/goPage1.js"></script>
+		<script src="../share/common/js/_address.js"></script>
+		<script src="../share/common/js/HttpConnection.js"></script>
+	</head>
+
+	<body>
+		<div class="YDapp">
+			<!-- <a class="mui-icon mui-icon-left-nav mui-pull-left myback" @tap="askBack()"></a> -->
+			<img class="clinicTest" src="img/clinicTest.png" alt="" />
+			<!--题型列表-->
+			<div id="questionBox" class="mui-content">
+				<p id="seconds_box"></p>
+				<p id="seconds">{{seconds}}</p>
+				<div v-show="currentData.videoUrl" class="problemBoxVideo">
+					<video style="width: 100%;height: 100%" :src="currentData.videoUrl" preload="auto" controlslist="nodownload" oncontextmenu="return(false)" controls="controls" autoplay>
+				</div>
+				<div v-show="currentData.audioUrl" class="problemBoxAudio" style="padding: 0;">
+					<audio autoplay="autoplay" style="display: none;" id="audio" :src="currentData.audioUrl"></audio>
+				</div>
+				<div v-show="currentData.question" class="textBox">
+					<p class="number">{{currentData.index}}.</p>
+					<div class="problem" v-html="currentData.question"></div>
+				</div>
+			</div>
+			<div id="questionBox1">
+				<div class="selectHeader" v-show="type==0">
+					<img src="img/xie.png" style="width: .4rem;" />
+					<span style="margin-left: .1rem;">视频输入框</span>
+				</div>
+				<div class="selectHeader" v-show="type==1">
+					<img src="img/xie.png" style="width: .4rem;" />
+					<span style="margin-left: .1rem;">音频输入框</span>
+				</div>
+				<div class="selectHeader" v-show="type==2">
+					<img src="img/xie.png" style="width: .4rem;" />
+					<span style="margin-left: .1rem;">文本输入框</span>
+				</div>
+
+				<div class="selectHeader" v-show="type==3">
+					<img src="img/xie.png" style="width: .4rem;" />
+					<span style="margin-left: .1rem;">图片输入框</span>
+				</div>
+				<!--视频-->
+				<div class="selectBox" v-show="type==0">
+					<!--视频封面上传 -->
+					<div style="overflow: hidden;">
+						<div class="diy">DIY封面，做属于你的style</div>
+						<div class="myImg">
+							<img class="bg" src="img/img.png" @tap="myImgUpload()" />
+							<div class="imgShow">
+								<div class="videoImg" id="videoImg">
+									<img :src="imgUrl" alt="" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--视频上传 -->
+					<div style="overflow: hidden;">
+						<div class="diy">DIY视频，做属于你的style</div>
+						<div class="myVideo">
+							<img class="bg" src="img/video.png" @tap="myVideoUpload()" />
+							<div class="videoShow">
+								<video id="playV" @tap="play1()" v-show="videoUrl" :poster="imgUrl" :src="videoUrl"></video>
+								<img class="plays" v-show="videoUrl" @tap="play1()" :src="isPlay?'img/content33.png':'img/content22.png'" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--音频-->
+				<div class="selectBox" v-show="type==1">
+					<!--音频上传-->
+					<div class="voice_upload" style="margin-top: 0.1rem;">
+						<!--音频录制-->
+						<div class="left">
+							<img @tap="myRecord(mySP)" :src="myPeat?'../share/common/images/details/repeat/tape.png':'../share/common/images/details/repeat/tape.gif'" />
+							<p>音频录制</p>
+						</div>
+						<!--试听一下-->
+						<div class="right">
+							<img @tap="play(myStop)" v-show="myPlayShow==0" src="../share/common/images/details/repeat/play03.png">
+							<img @tap="play(myStop)" v-show="myPlayShow==1" src="../share/common/images/details/repeat/play01.png">
+							<img @tap="play(myStop)" v-show="myPlayShow==2" src="../share/common/images/details/repeat/play02.png">
+							<p style="margin-left: 0.3rem;">听一听</p>
+						</div>
+					</div>
+				</div>
+				<!--文本-->
+				<div class="selectBox" v-show="type==2">
+					<textarea v-show="currentData.question" class="userAnswer" v-model="textMode"></textarea>
+				</div>
+				<!--图片-->
+				<div class="selectBox" v-show="type==3">
+					<!--图片上传 -->
+					<div style="overflow: hidden;">
+						<div class="myImg">
+							<img class="bg" src="img/img.png" @tap="myImgUpload()" />
+							<div class="imgShow">
+								<div class="videoImg" id="videoImg">
+									<img v-show="imgUrl" style="width: 100%;" class="videoImg" :src='imgUrl' />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="btnBox">
+				<p class="number" style="">当前:{{currentData.index}}/{{listData.length}}</p>
+				<p v-show="currentData.index == listData.length" @tap="submit()" class="canClick">提交</p>
+				<p v-show="currentData.index < listData.length" class="canClick" @tap="selecedFun()">下一题</p>
+			</div>
+			<div style="width:100%;height: .2rem;"></div>
+			<!--蒙版-->
+			<div class="maskZ" id="maskZ">
+				<!--弹框--> 
+				<div class="frameZ">
+					<!--提示语-->
+					<div class="describeZ">
+						<div class="tipsZ">温馨提示</div>
+						<div class="explainZ">
+							小伙伴们,尽量一次性答完哦,养成良
+							<p>好的学习答题习惯,确定要退出吗?</p>
+						</div>
+					</div> 
+					<!--按钮-->
+					<div class="btnZf">
+						<div class="btnZ1" @tap="closeMaskZ()">取消</div>
+						<div class="btnZ2" @tap="goBack()">确认</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<script src="../share/common/js/html5video.js"></script>
+	<script src="js/imgOss.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/videoOss.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="js/audioInit.js"></script>-->
+	<script src="js/essayPage.js"></script>
+	<!--手机端打印-->
+	<script type="text/javascript">
+		mui.init({
+			swipeBack: true //启用右滑关闭功能  
+		});
+	</script>
+
+</html>

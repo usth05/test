@@ -1,0 +1,108 @@
+/* *
+ * 作者：宋腾辉
+ * 时间：2019-7-8 15:40
+ * 功能：音频播放插件 audio
+ * */
+
+
+/*音频盒子样式*/
+
+.myAudio {
+	width: 100%;
+	height: 1.2rem;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding-right: .1rem;
+	border: 1px solid #FA6814;
+	border-radius: .1rem;
+	margin-bottom: .1rem;
+}
+
+
+/*左侧图标*/
+
+.myAudio .myAudioLeft {
+	width: 15%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+/*左侧音频播放图标*/
+
+.myAudio .myAudioLeft .audioImg {
+	width: 80% !important;
+}
+
+.myAudio .myAudioLeft .audioImg {
+	position: static !important;
+	height: auto !important;
+}
+
+
+/*右侧进度*/
+
+.myAudio .myAudioRight {
+	width: 85%;
+	height: 100%;
+	position: relative;
+}
+
+
+/*开始时间样式*/
+
+.myAudio .myAudioRight span {
+	position: absolute;
+	bottom: .1rem;
+	font-size: 12px;
+}
+
+.myAudio .myAudioRight .startTime {
+	left: 0;
+}
+
+.myAudio .myAudioRight .endTime {
+	right: 0;
+}
+
+
+/*进度条样式*/
+
+.myAudio .myAudioRight .rangeBox {
+	width: 96%;
+	height: 3px;
+	background: #DDDDDD;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+.myAudio .myAudioRight .rangeBox .rangeRed {
+	width: 1px;
+	height: 3px;
+	background: #FA6814;
+	position: absolute;
+	left: 0;
+	margin: auto;
+}
+
+.myAudio .myAudioRight .rangeBox .rangeRed .range {
+	width: 6px;
+	height: 6px;
+	background: red;
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	border-radius: 50%;
+}
+
+
+/*结束时间样式*/

@@ -1,0 +1,664 @@
+/*
+ *	createTime:2019年7月16日  星期四  18:00
+ * 	author	  :sth
+ * 	link	  :selectPage(选择题页面)
+ */
+ @media screen and (min-width: 501px) {
+	.bg,.frameZ {
+		width: 45% !important;
+	}
+}
+/*device-width:400px-1000px*/
+@media screen and (max-width: 500px) {
+	.bg,.frameZ{
+		width: 80% !important;
+	}
+}
+.header {
+	width: 100%;
+	max-width: 7.5rem;
+	min-width: 3.2rem;
+	height: .8rem;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	z-index: 9999;
+}
+.header .back {
+	position: absolute;
+	color: #fff;
+	font-weight: 100;
+	font-size: .3rem;
+	background: rgba(0, 0, 0, .4);
+	border-radius: 50%;
+	width: .4rem;
+	height: .4rem;
+	left: 0.1rem;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+.back::before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -.16rem;
+	margin-top: -.16rem;
+}
+
+/*
+ 	背景图片
+ * */
+
+#bg {
+	width: 100%;
+	max-width: 7.5rem;
+	min-width: 3.2rem;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	z-index: 1;
+}
+
+
+/*
+  选择框
+ * */
+
+#selectBody {
+	width: 96%;
+	min-height: 100vh;
+	position: relative;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	z-index: 2;
+	background: transparent;
+}
+
+#questionBox {
+	background: #EFEFEF;
+	width: 100%;
+	border-radius: .2rem;
+	margin-top: 1rem;
+	position: relative;
+	padding-top: .5rem;
+}
+
+.problemBoxAudio {
+	width: 90%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #000000;
+	z-index: 1;
+}
+
+.textBox {
+	width: 90%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	color: #000000;
+	z-index: 1;
+	margin: 0 5%;
+	padding: .2rem 0;
+}
+
+.textBox p {
+	color: #000000;
+}
+
+.textBox .problem p {
+	color: #000000;
+}
+
+.textBox .problem img {
+	width: 100%;
+}
+
+#seconds {
+	width: 1rem;
+	height: 1rem;
+	text-align: center;
+	line-height: .8rem;
+	color: #000000;
+	font-size: 30px;
+	position: absolute;
+	top: -.6rem;
+	left: 0;
+	right: 0;
+	margin: auto;
+	border: .1rem solid #FA6814;
+	border-radius: 50%;
+	z-index: 10;
+	background: #EFEFEF;
+}
+
+#seconds_box {
+	width: 2rem;
+	height: 1rem;
+	content: '';
+	background: #EFEFEF;
+	position: absolute;
+	z-index: 0;
+	border-radius: 50%;
+	top: -.3rem;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.problemBoxVideo {
+	width: 90%;
+	height: 3.2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #000000;
+	z-index: 1;
+	margin: 0 5%;
+	position: relative;
+}
+.problemBoxVideo::-webkit-media-controls-enclosure {
+	overflow:hidden;
+}
+.problemBoxVideo .myBg {
+	width: 100%;
+	height: 3.2rem !important;
+	position: absolute !important;
+	left: 0;
+	right: 0;
+	top: 0;
+	margin: 0 auto;
+}
+
+.selectBox {
+	width: 90%;
+	padding: .1rem 0;
+	position: relative;
+	z-index: 1;
+	margin: .1rem 5%;
+}
+
+.selectBox .select {
+	width: 100%;
+	min-height: .6rem;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	background: #CCCCCC;
+	border-radius: .1rem;
+	padding-left: .1rem;
+	margin-bottom: .1rem;
+}
+
+.selectBox .select img {
+	width: 100%;
+}
+
+.selectBox .selectActive {
+	background: deepskyblue;
+}
+
+.selectBox p,
+.problemBoxVideo p,
+.problemBoxAudio p,
+.textBox p {
+	margin-bottom: 0;
+	color: #000000;
+}
+
+.selectBox .select div {
+	font-size: 18px;
+	font-weight: 400;
+}
+
+
+/*
+ * 上一题、下一题按钮
+ */
+
+ #btnBox {
+	width: 100%;
+	height: .6rem;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	position: relative;
+	z-index: 10;
+	margin: .6rem 0;
+}
+
+#btnBox p {
+	margin-bottom: 0;
+	width: 25%;
+	height: .3rem;
+	font-size: 16px;
+	background: transparent;
+	text-align: center;
+	line-height: .3rem;
+	color: #000000;
+	border-radius: .1rem;
+}
+
+#btnBox p.canClick {
+	width: 25%;
+	background: rgba(250, 104, 19, 1);
+	color: #FFFFFF;
+}
+
+#btnBox p.number {
+	width: 25%;
+	background: rgba(255, 255, 255, .2);
+	color: #FFFFFF;
+}
+
+
+/***************************************视频样式 */
+
+.mui-video-Container {
+	background-color: black;
+	overflow: hidden;
+	width: 100%;
+	height: 3.2rem;
+	position: relative;
+}
+
+.mui-video-Container .mui-video-full {
+	overflow: hidden;
+	height: 100%;
+}
+
+.mui-video-Container .mui-video-txt {
+	height: 100%;
+}
+
+.mui-video-Container .mui-video-txt video {
+	width: 100%;
+	height: 100% !important;
+	background-color: #000000;
+}
+
+.mui-video-Container video[ishivideo="true"]::-webkit-media-controls {
+	display: none !important;
+}
+
+.mui-video-Container video[ishivideo="true"]::-moz-media-controls {
+	display: none !important;
+}
+
+.mui-video-Container video[ishivideo="true"]::media-controls {
+	display: none !important;
+}
+
+.mui-video-Container .icon {
+	width: 1em;
+	height: 1em;
+	vertical-align: -0.15em;
+	fill: currentColor;
+	overflow: hidden;
+	font-size: 20px;
+	position: relative;
+	top: 1px;
+}
+
+.mui-video-Container .rprogress {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
+	margin: auto;
+	width: 60px;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	display: none;
+}
+
+.mui-video-Container .rprogress .ladtit {
+	color: white;
+	font-size: 14px;
+}
+
+.mui-video-Container .rschedule {
+	background-color: rgba(0, 0, 0, 0);
+	border: 3px solid rgba(0, 183, 229, 0.9);
+	opacity: .9;
+	border-left: 5px solid rgba(0, 0, 0, 0);
+	border-right: 5px solid rgba(0, 0, 0, 0);
+	border-radius: 50px;
+	box-shadow: 0 0 15px #2187e7;
+	width: 46px;
+	height: 46px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -23px;
+	margin-top: -23px;
+	-webkit-animation: spin 1s infinite linear;
+	animation: spin 1s infinite linear;
+}
+
+@-webkit-keyframes spin {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+
+/*横条样式*/
+
+.mui-video-Container input[type=range] {
+	-webkit-appearance: none;
+	/*清除系统默认样式*/
+	width: 100%;
+	background: -webkit-linear-gradient(#40CEA8, #40CEA8) no-repeat, #fff;
+	/*设置左边颜色为#61bd12，右边颜色为#ddd*/
+	background-size: 0% 100%;
+	/*设置左右宽度比例*/
+	height: 3px;
+	/*横条的高度*/
+}
+
+
+/*拖动块的样式*/
+
+.mui-video-Container input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	/*清除系统默认样式*/
+	height: 13px;
+	/*拖动块高度*/
+	width: 13px;
+	/*拖动块宽度*/
+	background: #fff;
+	/*拖动块背景*/
+	border-radius: 50%;
+	/*外观设置为圆形*/
+	/* border: solid 1px #ddd;*/
+	/*设置边框*/
+}
+
+.mui-video-Container .mui-pay_ico {
+	z-index: 101;
+	width: 80px;
+	text-align: center;
+	height: 80px;
+	margin: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+.mui-video-Container .mui-pay_ico .icon {
+	font-size: 52px;
+	color: white;
+}
+
+.mui-video-Container .mui-time-current {
+	width: 46px;
+	float: left;
+	text-align: right;
+	display: inline-block;
+	color: white;
+	font-size: 14px;
+}
+
+.mui-video-Container .mui-time-total {
+	width: 78px;
+	text-align: center;
+	color: white;
+	display: inline-block;
+	font-size: 14px;
+}
+
+.mui-video-Container .mui-time-total .icon {
+	font-size: 28px;
+	color: white;
+}
+
+.mui-video-Container .mui-time-cout {
+	float: left;
+	margin-top: -5px;
+}
+
+.mui-video-Container .mui-quanping {
+	margin-top: 6px;
+	margin-left: 3px;
+	position: absolute;
+	right: 0px;
+	z-index: 10;
+}
+
+.mui-video-Container .mui-videoControls {
+	height: 20px;
+	width: 100%;
+	line-height: 20px;
+	background-color: rgba(0, 0, 0, 0.5);
+	position: absolute;
+	z-index: 200;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+}
+
+.mui-video-Container .mui-progressWrap {
+	height: 20px;
+	width: 100%;
+	position: absolute;
+	top: -15px;
+	left: 55px;
+}
+
+.mui-video-Container .mui-progressWrap .mui-wrap-right {
+	position: absolute;
+	width: 100%;
+	padding-right: 148px;
+}
+
+.mui-video-Container .mui-full-back {
+	position: absolute;
+	z-index: 2;
+	display: none;
+}
+
+.mui-video-Container .mui-full-back .icon {
+	font-size: 26px;
+	color: white;
+	left: 15px;
+	top: 5px;
+}
+
+.mui-video-Container .mui-full-back .vtitle {
+	color: white;
+	margin-left: 15px;
+	position: relative;
+	top: 4px;
+	font-size: 15px;
+}
+
+.mui-video-Container .v_left,
+.mui-video-Container .b_right {
+	position: absolute;
+	width: 50%;
+	height: 100%;
+	z-index: 1;
+}
+
+.mui-video-Container .b_right {
+	right: 0px;
+}
+
+.mui-video-Container .ptime {
+	position: absolute;
+	z-index: 2;
+	left: 0px;
+	text-align: center;
+	display: none;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
+	margin: auto;
+	border-radius: 3px;
+	background-color: rgba(0, 0, 0, 0.6);
+	height: 40px;
+	width: 120px;
+	line-height: 40px;
+	color: white;
+}
+
+.mui-bar .mui-icon {
+	margin-top: 4px;
+	font-size: 28px;
+	color: #999999;
+}
+
+.mui-bar-nav.mui-bar .mui-icon {
+	padding-left: 5px;
+}
+
+.more {
+	margin-top: 16px;
+	margin-right: 5px;
+}
+
+#mui-full-close {
+	width: .4rem;
+	height: .4rem;
+	color: white;
+	position: fixed;
+	right: .4rem;
+	z-index: 6666;
+	font-size: 36px;
+	display: none;
+	top: 1.4rem;
+	right: .3rem;
+}
+
+#myBack {
+	color: #2f2f2f !important;
+	position: absolute !important;
+	left: 0.15rem !important;
+	top: -.2rem !important;
+	z-index: 999 !important;
+	font-size: 0.6rem !important;
+	display: block !important;
+}
+
+
+/*------------------------------------------------------------------ */
+
+
+/*
+ 	蒙版样式
+ * */
+
+.maskZ {
+	width: 100%;
+	max-width: 7.5rem;
+	min-width: 3.2rem;
+	height: 100vh;
+	background: rgba(0, 0, 0, .5);
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	margin: 0 auto;
+	z-index: 99;
+	display: none;
+}
+
+.frameZ {
+	width: 50%;
+	border: 1px solid #ECECEC;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background: #FFFFFF;
+	border-radius: .1rem;
+}
+
+.closeZ {
+	position: fixed;
+	right: 0.11rem;
+	top: -1rem;
+	color: #FFFFFF;
+	font-size: .68rem;
+}
+
+.closelineZ {
+	width: 0.02rem;
+	height: 0.4rem;
+	background-color: #FFFffF;
+	position: fixed;
+	right: 0.44rem;
+	top: -0.4rem;
+}
+
+.tipsZ {
+	font-size: .24rem;
+	text-align: center;
+	margin: .2rem 0 .1rem;
+	color: rgba(0, 0, 0, 1);
+}
+
+.explainZ {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 5%;
+	margin: 0;
+	font-size: 12px;
+	line-height: .2rem;
+	color: rgba(0, 0, 0, 1);
+	text-align: center;
+}
+.explainZ p{
+	font-size: 12px;
+	text-align: center;
+}
+.btnZf {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	border-top: 1px solid #ECECEC;
+}
+.btnZf div{
+	width: 50%;
+	height: .4rem;
+	line-height: .4rem;
+	text-align: center;
+	padding: 0rem 0;
+	font-size: .18rem;
+}
+.btnZ1 {
+	color: #333;
+}
+
+.btnZ2 {
+	color: rgba(0, 0, 0, 1);
+	border-left: 1px solid #ccc;
+}

@@ -1,0 +1,40 @@
+/*
+ *	createTime:2018年12月28日15:52:50
+ * 	author	  :王栋
+ */
+
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+}
+
+body {
+	background-color: white;
+}
+.goBox {
+	width: 100%;
+	min-width: 3.2rem;
+	max-width: 7.5rem;
+	position: fixed;
+	height: 1px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	z-index: 1000;
+}
+.goBox p{
+	width: 50%;
+	height: .4rem;
+	text-align: center;
+	line-height: .4rem;
+	position: absolute;
+	bottom: .2rem;
+	left: 0;
+	right: 0;
+	margin: auto;
+	border-radius: .3rem;
+	font-size: 18px;
+}

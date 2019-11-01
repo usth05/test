@@ -1,0 +1,379 @@
+/* @media screen and (min-width: 1025px) {
+	.bg,.frameZ {
+		width: 45% !important;
+	}
+} */
+@media screen and (min-width: 501px) {
+	.bg,.frameZ {
+		width: 45% !important;
+	}
+}
+/*device-width:400px-1000px*/
+@media screen and (max-width: 500px) {
+	.bg,.frameZ{
+		width: 80% !important;
+	}
+}
+.YDapp {
+	position: relative;
+}
+
+
+/* *
+ *	背景图样式
+ * */
+
+[v-cloak] {
+	display: none;
+}
+.YDapp .punchBg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	z-index: -1;
+}
+
+
+/* *
+ *	头部导航样式
+ * */
+
+.header {
+	width: 100%;
+	height: .5rem;
+	max-width:7.5rem;
+	min-width:3.2rem;
+	left: 0;
+	right: 0;
+	top: 0;
+	margin: auto;
+	position: fixed;
+	z-index: 1000;
+}
+
+.header .back {
+	position: absolute;
+	color: #fff;
+	font-weight: 100;
+	font-size: .3rem;
+	background: rgba(0, 0, 0, .4);
+	border-radius: 50%;
+	width: .3rem;
+	height: .3rem;
+	left: 0.1rem;
+	top: 0.1rem;
+}
+
+.back::before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -.16rem;
+	margin-top: -.16rem;
+}
+
+#scroll {
+	width: 100%;
+	height: 100vh;
+	position: relative;
+	overflow-y: scroll;
+}
+
+.listData {
+	width: 100%;
+}
+
+.listData li {
+	width: 100%;
+	position: relative;
+	font-size: 0;
+	line-height: 0;
+}
+
+.listData img {
+	width: 100%;
+	margin-bottom: .5rem;
+}
+
+#myBtn {
+	width: 100%;
+	max-width:7.5rem;
+	min-width:3.2rem;
+	height: .6rem;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	display: flex;
+	justify-content: flex-start;
+	z-index: 10;
+}
+
+#myBtn .btn {
+	width: 35%;
+	height: .6rem;
+	font-size: 16px;
+	background: #de9806;
+	text-align: center;
+	line-height: .6rem;
+	color: #FFFFFF;
+}
+
+#myBtn .activation {
+	width: 65%;
+	height:  .6rem;
+	color: #FFFFFF;
+	background:#f2c059;
+}
+
+#report {
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, .3);
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	display: none;
+}
+.schedule {
+	width: 100%;
+	min-width: 3.2rem;
+	max-width: 7.5rem;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	z-index: 1000;
+}
+
+.schedule .baifenbi {
+	width: 100%;
+	height: .3rem;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	position: relative;
+	background: rgba(0, 0, 0, .3);
+
+}
+.schedule .baifenbi p {
+	margin-bottom: 0;
+	position: absolute;
+	left: 0;
+	top:0;
+	bottom: 0;
+	margin: auto;
+	color: #fff;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;padding-left: .1rem;
+
+}
+
+.schedule .progressBar {
+	width: 0%;
+	background: #F2C000;
+	display: block;
+	height: .3rem;
+	border-radius: 0 .3rem .3rem 0 ;
+
+}
+.schedule .signUpBox {
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	position: relative;
+}
+.schedule .signUpBox img{
+	width:100%;
+	max-height: 1rem;
+}
+.schedule .signUpBox button {
+	width: 30%;
+	height: .4rem;
+	border: none;
+	background: #fa6814;
+	color: #fff;
+	border-radius: .2rem;
+	margin: 0 5%;
+	font-size: .18rem;
+	position: absolute;
+	right: .1rem;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+/*激活码弹框*/
+
+.maskZ {
+	width: 100%;
+	max-width: 7.5rem;
+	min-width: 3.2rem;
+	height: 100vh;
+	background: rgba(0, 0, 0, .5);
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	margin: 0 auto;
+	z-index: 99;
+	display: none;
+}
+
+.frameZ {
+	width: 50%;
+	border: 1px solid #ECECEC;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background: #FFFFFF;
+	border-radius: .1rem;
+}
+
+.describeZ {
+	margin-bottom: .1rem
+}
+.tipsZ {
+	font-size: .24rem;
+	text-align: center;
+	margin: .2rem 0 .1rem;
+	color: rgba(0, 0, 0, 1);
+}
+
+.explainZ {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 0 5%;
+	margin: 0;
+	font-size: 12px;
+	line-height: .2rem;
+	color: #333;
+	text-align: center;
+}
+
+.explainZ input {
+	width: 100%;
+	height: .4rem;
+	margin: 0;
+	color: #000000;
+	font-size: 14px;
+
+}
+.explainZ p{
+	font-size: 12px;
+	text-align: center;
+}
+.btnZf {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	border-top: 1px solid #ECECEC;
+}
+.btnZf div{
+	width: 50%;
+    height: .5rem;
+    line-height: .5rem;
+    text-align: center;
+    font-size: .18rem;
+}
+.btnZ1 {
+	color: #333;
+}
+
+.btnZ2 {
+	color: rgba(0, 0, 0, 1);
+	border-left: 1px solid #ccc;
+}
+/**/
+#sinUpPop {
+	width: 100%;
+	max-width: 7.5rem;
+	min-width: 3.2rem;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	/* left: 0; */
+	z-index: 1000;
+	background: rgba(0,0,0,.3);
+	display: flex;
+	justify-items: center;
+	align-items: center;
+}
+#sinUpPopForm {
+	width: 90%;
+	margin: auto;
+	background: #FFFffF;
+	border-radius: .1rem;
+}
+#sinUpPopForm h3{
+	text-align: center;
+	margin: .2rem 0;
+	color: #333;
+}
+#sinUpPopForm label{
+	width: 30%;
+	font-size: 16px;
+	padding: .1rem 0 .1rem .1rem;
+	text-align: right;
+}
+#sinUpPopForm input{
+    width: 60%;
+    margin-right: 10%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+    font-size: 14px;
+}
+
+#sinUpPopForm input::-webkit-input-placeholder {
+	font-size: 14px;
+	color: #bbb;
+}
+.mui-input-group:after {
+	height: 0;
+	border: none !important;
+}
+.mui-input-group:before {
+	height: 0;
+}
+.mui-input-group .mui-input-row {
+	margin: 10px 0;
+	height: auto;
+}
+.mui-input-group .mui-input-row:after {
+	height: 0;
+}
+.mui-input-group .mui-input-row .sinUp_textarea{
+	border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    width: 60%;
+    margin-right: 10%;
+}
+.mui-input-group .mui-input-row .sinUp_textarea::-webkit-input-placeholder {
+	color: #bbb;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

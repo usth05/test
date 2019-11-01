@@ -1,0 +1,418 @@
+/*头部*/
+@media screen and (min-width: 1025px) {
+	.bg,.frameZ {
+		width: 25% !important;
+	}
+}
+@media screen and (min-width: 501px) and (max-width: 1024px) {
+	.bg,.frameZ {
+		width: 45% !important;
+	}
+}
+/*device-width:400px-1000px*/
+@media screen and (max-width: 500px) {
+	.bg,.frameZ{
+		width: 80% !important;
+	}
+}
+.header {
+	background: #fff;
+	height: .6rem;
+}
+
+.header h1 {
+	color: #333;
+	height: .6rem;
+	line-height: .6rem;
+}
+.header .back {
+	color: #FA6814;
+	font-size: .3rem;
+}
+.header img {
+	width: .4rem;
+	height: .4rem;
+}
+
+body {
+	background: #fff;
+}
+
+input {
+	-webkit-user-select: auto !important;
+}
+
+.mui-col-xs-10 {
+	-webkit-user-select: auto !important;
+}
+
+.YDapp .mui-row {
+	-webkit-user-select: auto !important;
+}
+
+/**完善信息**2018年3月9日  星期五  11:05:50***********/
+
+.YDapp {
+	padding: 0rem .1rem;
+}
+
+.YDapp div {
+	border-bottom: 1px solid #bbb;
+	position: relative;
+}
+
+.YDapp .partOne>a {
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	display: flex;
+	justify-items: self-start;
+	align-items: center;
+	position: relative;
+}
+.YDapp .partOne>a p{
+	margin-bottom: 0;
+}
+.YDapp .partOne>a input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	margin: auto;
+	width: 100%;
+	height: 1rem;
+	opacity: 0;
+}
+.YDapp .partOne>a img {
+	width: .6rem;
+	height: .6rem;
+	border-radius: 50%;
+}
+
+.YDapp div input {
+	width: 60%;
+	font-size: 14px;
+	color: #333;
+	margin: 0;
+	padding: 0;
+	border: none;
+	margin-top: .1rem;
+}
+
+.YDapp div label {
+	background-size: .6rem;
+	padding: .2rem 0;
+	text-align: center;
+	font-size: 14px; 
+}
+
+.YDapp .partOne,
+.YDapp .partTwo {
+	border-bottom: none;
+}
+
+.YDapp .gender input {
+	position: initial;
+	padding-right: .5rem;
+}
+
+.YDapp .gender {
+	float: right;
+	width: 2rem;
+	border-bottom: none;
+}
+
+.YDapp .gender label {
+	height: .6rem;
+	line-height: rem;
+}
+
+.mui-checkbox input[type=checkbox]:checked:before,
+.mui-radio input[type=radio]:checked:before {
+	color: #FA6814
+}
+
+.btn {
+	width: 60%;
+	font-size: .18rem;
+	color: #fff;
+	line-height: .4rem;
+	background: #FA6814;
+	border-radius: .08rem;
+	margin: 0;
+	padding: 0;
+	margin: .3rem 20%;
+	border: none !important;
+	border: 1px solid white;
+}
+
+.orderNum {
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 999;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.orderNum .bg {
+	border: none;
+	font-size: 0.24rem;
+	border-radius: 0.1rem;
+	background-color: white;
+	left: 0%;
+	top: 0%;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+	height: 2.3rem;
+	position: absolute;
+}
+
+.orderNum .bg .info {
+	width: 93%;
+	font-size: 0.12rem;
+	text-align: justify;
+	margin: 0.1rem auto 0;
+}
+
+.orderNum .bg .title {
+	font-size: 0.24rem;
+	padding-top: 0.3rem;
+	text-align: center;
+}
+
+.orderNum .bg .btnZf {
+	display: flex;
+	justify-content: space-around;
+	border-top: 1px solid #ECECEC;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+.orderNum .bg .btnZf div{
+	font-size: .24rem;
+	color: #FA6814;
+	width: 2.7rem;
+	height: .6rem;
+	text-align: center;
+	line-height: .6rem;
+	padding: 0;
+}
+
+
+.btnZ2 {
+	border-left: 1px solid #ECECEC;
+}
+
+
+/* *
+ * 用户填写
+ * */
+
+#contact {
+	width: 100%;
+	min-width: 3.2rem;
+	max-width: 7.5rem;
+	height: 100vh;
+	overflow-y: scroll;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	z-index: 1000;
+	background: #FFFFFF;
+	padding: .1rem .2rem;
+}
+
+#contact div {
+	border: none;
+}
+
+.header_box {
+	margin-top: .6rem;
+	height: 1.2rem;
+}
+
+.header_box h3 {
+	font-size: 18px;
+}
+
+.body_box .list {
+	width: 100%;
+	height: 1.6rem;
+}
+
+.body_box .list .list_header {
+	display: flex;
+	justify-content: space-around;
+}
+
+.body_box .list .list_header .list_name {
+	width: 60%; 
+	font-size: 14px;
+	color: #FA6814;
+}
+
+.body_box .list .list_header .list_mode {
+	width: 40%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	color: #000000;
+}
+.body_box .list .list_header .list_mode span{
+	height: .4rem;
+	line-height: .44rem;
+}
+.body_box .list .list_header .list_mode img {
+	width: .2rem;
+	height: .2rem;
+}
+
+.body_box .list .list_text {
+	width: 100%;
+	position: relative;
+}
+
+.body_box .list .list_text textarea {
+	width: 100%;
+	height: .8rem;
+	font-size: 12px;
+	padding: .2rem;
+	border: 1px solid #999;
+}
+
+.body_box .list .list_text .edit {
+	width: .15rem;
+	height: .15rem;
+	position: absolute;
+	top: .2rem;
+	left: .3rem;
+}
+
+.body_box .list .list_text .tishi {
+	position: absolute;
+	right: .2rem;
+	bottom: .3rem;
+	color: #CCCCCC;
+	font-size: 12px;
+	margin-bottom: 0;
+}
+
+.footer_box {
+	width: 100%;
+	position: relative;
+}
+
+.footer_box p.tishi1 {
+	width: 100%;
+	height: .6rem;
+	line-height: .6rem;
+	text-align: center;
+	font-size: 14px;
+	color: #000000;
+}
+
+.footer_box p.btn {
+	width: 4rem;
+	height: .8rem;
+	text-align: center;
+	line-height: .8rem;
+	background: #EEEEEE;
+	color: #000000;
+	position: absolute;
+	top: .2rem;
+	left: 50%;
+	margin-left: -2rem;
+}
+
+/*
+	 存储微信号的input
+ * */
+#kweixin{
+	display: none !important;
+}
+/*
+ 	蒙版样式
+ * */
+
+.maskZ {
+	width: 100%;
+	height: 100vh;
+	background: rgba(0, 0, 0, .5);
+	position: fixed !important;
+	left: 0 !important;
+	top: 0 !important;
+	z-index: 9999;
+	display: none;
+}
+.maskZ div{
+	border-bottom:none;
+}
+.frameZ {
+	height: 2rem;
+	border: 1px solid #ECECEC;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background: #FFFFFF;
+	border-radius: .1rem;
+}
+
+.closeZ {
+	position: fixed;
+	right: 0.11rem;
+	top: -1rem;
+	color: #FFFFFF;
+	font-size: .7rem;
+}
+
+.closelineZ {
+	width: 0.02rem;
+	height: 0.4rem;
+	background-color: #FFFffF;
+	position: fixed;
+	right: 0.44rem;
+	top: -0.4rem;
+}
+
+.tipsZ {
+	font-size: .24rem;
+	text-align: center;
+	margin: .3rem 0 .2rem;
+	color: #666;
+}
+
+.explainZ {
+	width: 100%;
+	text-align: center;
+	margin: 0;
+	padding: 0 5%;
+	height: .6rem;
+	font-size: 14px;
+	line-height: .6rem;
+}
+
+.btnZf {
+	display: flex;
+	justify-content: space-around;
+	border-top: 1px solid #ECECEC;
+}
+.btnZf div{
+	font-size: .24rem;
+	color: #FA6814;
+	width: 2.7rem;
+	height: .6rem;
+	text-align: center;
+	line-height: .6rem;
+}
+
+.btnZ2 {
+	border-left: 1px solid #ECECEC;
+}

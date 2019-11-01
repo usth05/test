@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../share/common/css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../share/common/css/base.css">
+		<link href="css/sign.css" rel="stylesheet" />
+		<script src="../share/common/js/mui.min.js"></script>
+		<script src="../share/common/js/vue.min.js"></script>
+		<script src="../share/common/js/HttpConnection.js"></script>
+		<script src="../share/common/js/jquery-3.2.1.min.js"></script>
+		<script src="../share/common/js/md5.js"></script>
+		<script src="../share/common/js/goPage1.js"></script>
+		<script src="../share/common/js/_address.js"></script>
+	</head>
+
+	<body>
+	<div class="YDapp" style="margin-top: 0;padding: 0">
+		<div class="main">
+			<!-- 手机号 -->
+			<div class="phone mui-row">
+				<label class="mui-col-xs-1"></label>
+				<input class="mui-col-xs-10" id="tel" type="tel" placeholder="请输入您的手机号" @focus.stop="focusss($event)" @blur.stop="blurss($event)">
+				<img class="delete" src="images/delete.png" @tap.stop="delete1($event)">
+			</div>
+
+			<!-- 验证码 -->
+			<div class="phone mui-row code">
+				<label class="mui-col-xs-1"></label>
+				<input class="mui-col-xs-10" id="verify" type="number" placeholder="请输入短信验证码" @focus.stop="focusss($event)" @blur.stop="blurss($event)">
+				<img class="delete" src="images/delete.png" style="right:1rem" @tap.stop="delete1($event)">
+				<button class="codeBtn" @tap.stop="setUp($event)" v-if="isOk==false">获取验证码</button>
+				<button class="codeBtn" style="background: #bbb;" v-if="isOk==true">重新发送<span>{{n}}</span></button>
+			</div>
+
+			<!-- 密码 -->
+			<div class="phone mui-row password">
+				<label class="mui-col-xs-1"></label>
+				<input class="mui-col-xs-10 password1" id="password" type="password" placeholder="请输入6-20位数字或字母" @focus.stop="focusss($event)" @blur.stop="blurss($event)">
+				<img class="delete" src="images/delete.png" style="right:1.8rem;display: none;">
+				<img class="lookPassword" :src="imageNav" @tap.stop="look($event)">
+			</div>
+
+			<!-- 确认密码 -->
+			<div class="phone mui-row password">
+				<label class="mui-col-xs-1"></label> 
+				<input class="mui-col-xs-10 password1" id="password1" type="password" placeholder="请确认密码" @focus.stop="focusss($event)" @blur.stop="blurss($event)">
+				<img class="delete" src="images/delete.png" style="right:1.8rem;display: none;">
+				<img class="lookPassword" :src="imageNav" @tap.stop="look($event)">
+			</div>
+
+			<!-- 邀请码 -->
+			<!-- <div class="phone mui-row code">
+				<a class="mui-col-xs-1"></a>
+				<input class="mui-col-xs-10 password1" id="Invitation" type="text" placeholder="输入邀请码获2枚大拇指,没有可不填!" @focus.stop="focusss($event)" @blur.stop="blurss($event)">
+				<img class="delete" src="images/delete.png" style="right:1.8rem;display: none;">
+				<img class="goHelp" src="images/help.png" @tap.stop="help($event)">
+			</div> -->
+
+			<!-- 温馨提示 --> 
+			<div class="myWord">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果您没有收到验证码，请点击【重新获取】按钮，若您还是收不到验证码短信，说明现在短信通道有阻塞现象，请过几小时重试或联系客服！</div>
+			<!-- 服务条款-->
+			<div class="serviceRules">
+				<input @change="checkRules()" type="checkbox" id="checkRules" />
+				<a @tap="jump()" href="#">我已阅读并同意相关服务条款和隐私政策</a>
+			</div>
+			<!-- 注册 -->
+			<div class="login">
+				<img src="images/mobilephone.png" @tap.stop="maskZ()" alt="" />
+				<button class="btn disableBtn" @tap.stop="sub()">测评注册</button>
+			</div>
+
+			<!--蒙版-->
+			<div class="maskZ" id="maskZ">
+				<!--弹框-->
+				<div class="frameZ">
+					<!--提示语-->
+					<div class="describeZ">
+						<div class="tipsZ">温馨提示</div>
+						<div class="explainZ">
+							全国咨询服务热线:18167140039
+							<p>咨询时间：周一至周五 10:00-17:00<br /> 亦可添加服务中心微信号:18167140039</p>
+						</div>
+					</div>
+					<!--按钮-->
+					<div class="btnZf">
+						<div class="btnZ1" @tap="closeZ()">取消</div>
+						<div class="btnZ2" @tap="dialTest()">确认</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<script src="js/register.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			//			 var vConsole = new VConsole();
+		</script>
+	</body>
+
+</html>

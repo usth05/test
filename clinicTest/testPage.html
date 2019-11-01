@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>校内语文学习达标测评系统</title>
+		<meta name="description" itemprop="description" content="北京师范大学《中国教师》杂志社教育研究中心举办全国中小学语文综合能力测评"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<!--引入mui.css-->
+		<link rel="stylesheet" href="../share/common/css/base.css">
+		<link rel="stylesheet" href="../share/common/css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/testPage.css" />
+		<!--引入mui.js-->
+		<script src="../share/common/js/mui.min.js"></script>
+		<script src="../share/common/js/jquery-3.2.1.min.js"></script>
+		<!--公共的脚本文件-->
+		<script src="../share/common/js/vue.min.js"></script>
+		<script src="../share/common/js/goPage1.js"></script>
+		<script src="../share/common/js/HttpConnection.js"></script>
+	</head>
+
+	<body>
+		<div class="YDapp" v-cloak>
+			<div id="scroll" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="listData">
+						<img :src="listData.infoPhoto" />
+					</ul>
+				</div>
+			</div>
+			<div id="myBtn" v-if="type==1">
+				<div class="btn" @tap="goNextPage('./lookReport.html')">查看报告</div>
+				<div class="btn activation" v-if="!isUpload" @tap="maskZFun()">立即激活</div>
+				<div class="btn activation" v-else @tap="goTopicList()">继续测试</div>
+			</div>
+			<div class="schedule" v-else>
+				<div class="baifenbi">
+					<span class="progressBar"></span>
+					<p>已报名:<span style="font-size: 18px">{{baifenbi}}%</span></p>
+				</div>
+				<div class="signUpBox">
+					<img class="signImg" :src="listData.info" alt="">
+					<button class="signUp" @tap="sinUpPopFun()">立即报名</button>
+				</div>
+			</div>
+			<!--激活蒙版-->
+			<div class="maskZ" id="maskZ">
+				<!--弹框-->
+				<div class="frameZ">
+					<!--提示语-->
+					<div class="describeZ">
+						<div class="tipsZ">测评激活登录</div>
+						<div class="explainZ">
+							<input type="text" placeholder="请输入激活码" v-model="password" />
+						</div>
+						<div class="explainZ" style="margin-top: .1rem;">
+							<div style="width: 100%;">
+								没有测评激活码用户,向测评老师致电免费索取<br>或致电全国服务热线：18167140039
+								<p style="color: #333;margin-bottom: 0">咨询时间：周一至周五 10:00-17:00</p>
+								<p class="explainZ" style="text-align: justify;color: #de9806">
+									注:测评激活码激活后不要随意退出,如强制退出过今晚24时,未答题目默认放弃,激活码失效
+								</p>
+							</div>
+						</div>
+					</div>
+					<!--按钮-->
+					<div class="btnZf">
+						<div class="btnZ1" @tap="dialTest()">取消</div>
+						<div class="btnZ2" @tap="goActivation()">确认</div>
+					</div>
+				</div>
+			</div>
+			<!--提示蒙版-->
+			<div class="maskZ" id="maskZ1">
+				<!--弹框-->
+				<div class="frameZ">
+					<!--提示语-->
+					<div class="describeZ">
+						<div class="tipsZ">温馨提示</div>
+						<p class="explainZ" style="text-align: center;">
+							测评激活码激活后不要随意退出，如强制退出过今晚24时，未答题默认放弃，激活码失效！
+						</p>
+					</div>
+					<!--按钮-->
+					<div class="btnZf">
+						<div class="btnZ1" @tap="closeZ1()">取消</div>
+						<div class="btnZ2" @tap="maskZFun()">确认</div>
+					</div>
+				</div>
+			</div>
+			<!--激活蒙版-->
+			<div class="sinUpPop" v-show="sinUpPop" id="sinUpPop">
+				<div id="sinUpPopForm">
+					<div>
+						<h3>报名信息填写</h3>
+					</div>
+					<div>
+						<form class="mui-input-group" id="">
+							<div class="mui-input-row">
+								<label>学生姓名：</label>
+								<input type="text" class="mui-input-clear" v-model="name" placeholder="请输入姓名">
+							</div>
+							<div class="mui-input-row">
+								<label>联系方式：</label>
+								<input type="number" class="mui-input-clear" v-model="telephone" placeholder="请输入联系方式">
+							</div>
+							<div class="mui-input-row">
+								<label>学生现状：</label>
+								<input type="text" class="mui-input-clear" v-model="info" placeholder="请输入学生现状">
+							</div>
+							<div class="mui-input-row">
+								<label>学生需求：</label>
+								<!-- <input type="textarea" class="mui-input-clear" v-model="shortcoming" placeholder="请输入学生需求"> -->
+								<textarea class="sinUp_textarea" type="textarea" class="mui-input-clear" v-model="shortcoming" placeholder="请输入学生需求" rows="3"></textarea>
+							</div>
+							<div class="mui-button-row" style="margin: .2rem 0">
+								<button type="button" class="mui-btn mui-btn-primary" @tap="signUp()">确认</button>
+								<button type="button" class="mui-btn mui-btn-danger" @tap="sinUpPopFun()">取消</button>
+							</div>
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+
+	<!--引入js文件-->
+	<script src="js/testPage.js" type="text/javascript" charset="utf-8"></script>
+	<!--手机打印-->
+	<script type="text/javascript">
+		//var vConsole = new VConsole();
+		mui.init({
+			swipeBack: false
+		});
+		/*mui('.mui-scroll-wrapper').scroll({
+			deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+		});*/
+	</script>
+
+</html>

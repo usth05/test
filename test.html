@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>校内语文学习达标测评系统</title>
+	<meta name="description" itemprop="description" content="本达标测评旨为小学学生校内课本学习的基础知识是否全面掌握达标的预测工具，为学情提供依据。"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="HandheldFriendly" content="true" />
+	<meta name="MobileOptimized" content="320" />
+	<!--引入mui.css-->
+	<link rel="stylesheet" href="share/common/css/mui.min.css">
+	<link rel="stylesheet" type="text/css" href="clinicTest/css/init.css" />
+	<link rel="stylesheet" href="share/common/css/base.css">
+	<!--引入mui.js-->
+	<script src="share/common/js/mui.min.js"></script>
+	<!--公共的脚本文件-->
+	<script src="share/common/js/vue.min.js"></script>
+	<script src="share/common/js/goPage1.js"></script>
+	<script src="share/common/js/HttpConnection.js"></script>
+</head>
+
+<body>
+	<div class="YDapp">
+		<img class="punchBg" src="clinicTest/img/zdinit.png" alt="" />
+		<div style="background: transparent;position: relative;padding-top: 0; width: 100%">
+			<div class="punchAd" @click="goAh('clinicTest/advertisingList.html')">系统说明</div>
+			<div class="punch_box">
+				<div class="punch" @click="goAh('clinicTest/clinicTest.html')">开启测评之旅</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="clinicTest/js/init.js"></script>
+
+</html>

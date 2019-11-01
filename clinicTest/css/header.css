@@ -1,0 +1,206 @@
+@font-face {
+	font-family: 'iconfont';
+	src: url('../fonts/PINGFANG MEDIUM.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'tengxiang';
+	src: url('../fonts/tengxiang.TTF') format('truetype');
+}
+
+@media only screen and (min-device-width: 500px) and (max-device-width: 1024px) {
+	/* style */
+	html {
+		font-size: 60px !important;
+	}
+	/* style */
+	.banner {
+		height: 5rem !important;
+	}
+	.mui-bar-tab {
+		height: 1.2rem !important;
+	}
+	#bottomNav li img {
+		width: .6rem !important;
+		height: .6rem !important;
+	}
+	#bottomNav li p {
+		font-size: 16px !important;
+	}
+	
+	.wrap .set .middle .name {
+		margin-top: 0.35rem !important;
+		font-size: 0.35rem !important;
+	}
+}
+
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "iconfont";
+}
+
+h2,
+h3,
+h1,
+p,
+span,
+li {
+	font-family: "iconfont";
+	font-size: .3rem;
+}
+
+li,
+ol {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul,
+li {
+	margin: 0;
+	padding: 0;
+}
+
+.mui-bar .mui-title {
+	right: .4rem;
+	left: .4rem;
+	display: inline-block;
+	overflow: hidden;
+	width: auto;
+	margin: 0;
+	text-overflow: ellipsis;
+	/*color: #fff;*/
+	/*padding-top:.05rem*/
+}
+
+.headerTran h1 {
+	line-height: 1.44rem;
+	color: #fff;
+	font-size: 0.36rem;
+}
+
+
+/*头部*/
+
+header {
+	position: fixed;
+	z-index: 10;
+	color: #fff;
+	width: 100%;
+	height: 1.3rem !important;
+	line-height: 1.3rem !important;
+	font-size: 0.32rem;
+	margin: 0 auto;
+	text-align: center;
+	background: #fa6814;
+	display: block;
+	box-shadow: initial;
+	/* border-top: .5rem solid #fa6814; */
+	border-top: .5rem solid #EDEDED;
+}
+
+header h1 {
+	line-height: 1.3rem;
+	color: #fff;
+	font-size: 0.36rem;
+}
+
+.mui-bar {
+	/*background-color: #FE7729;*/
+}
+
+
+/*.mui-bottom{
+	background-color: #fff;
+}*/
+
+
+/*banner*/
+
+.banner .mui-slider-indicator {
+	position: absolute;
+	bottom: .3rem;
+	width: 100%;
+	right: .5rem;
+	text-align: right;
+	background: 0 0;
+}
+
+.mui-slider-indicator .mui-indicator {
+	display: inline-block;
+	width: .1.5rem;
+	height: .1.5rem;
+	margin: .05rem;
+	cursor: pointer;
+	background: #aaa;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border-radius: 50%;
+	background: #fff;
+}
+
+.mui-slider-indicator .mui-active.mui-indicator {
+	background: #fff;
+	width: .2rem;
+	border-radius: 1rem;
+}
+
+
+/*
+ * 底部导航  
+ */
+
+.mui-bar-tab {
+	-webkit-box-shadow: none;
+	/* box-shadow: 0 10px 10px #BBBBBB inset; */
+	border: #ddd solid 1px;
+	padding-top: .14rem;
+	height: 58px;
+	width: 92%;
+	border-radius: .2rem;
+	bottom: .1rem;
+	margin: 0 auto;
+	/*background: #EE6122;*/
+}
+
+nav li {
+	/*display: table-cell;*/
+	float: left;
+	width: 20%;
+	text-align: center;
+}
+
+nav li p {
+	font-size: .22rem;
+	margin-bottom: 0px;
+	/* height: .22rem; */
+	margin-top: -.06rem;
+	color: #000;
+}
+
+nav li img {
+	width: .4rem !important;
+	height: .4rem !important;
+}
+
+nav .active p {
+	color: #FA6814;
+}
+
+nav li .tm {
+	width: 1.3rem !important;
+	height: .7rem !important;
+}
+
+[v-cloak] {
+	display: none;
+}

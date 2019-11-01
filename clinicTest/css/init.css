@@ -1,0 +1,71 @@
+@media only screen and (min-device-width: 500px) and (max-device-width: 1024px) {
+	.YDapp .punchBg {
+		height: auto !important;
+	}
+}
+html {
+	font-size: 100px;
+}
+.YDapp {
+	position: relative;
+}
+
+
+/* *
+ *	背景图样式
+ * */
+
+.YDapp .punchBg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	width: 100%;
+	height:100vh;
+	max-width: 7.5rem;
+}
+
+
+.punch_box {
+	width: 100%;
+	height: 100vh;
+	background: transparent;
+}
+
+.punch_box>div {
+	width: 60%;
+	height: .5rem;
+	background: #FFFFFF;
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	border-radius: .08rem;
+	text-align: center;
+	line-height: .5rem;
+	font-size: 18px;
+	color: #de9806;
+	font-weight: bold;
+}
+
+.punchAd {
+	width: 0.26rem;
+	height: .8rem;
+	line-height: .16rem;
+	background: rgba(0,0,0,.3);
+	color: #FFFFFF;
+	font-size: .14rem;
+	text-align: center;
+	position: absolute;
+	top: .3rem;
+	right: .2rem;
+	display: flex;
+	align-items: center;
+	border-radius: .1rem;
+}
+
+.punch_box .punch {
+	bottom: 0.6rem;
+}

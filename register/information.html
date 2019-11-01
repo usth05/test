@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../share/common/css/base.css">
+		<link href="../share/common/css/mui.min.css" rel="stylesheet" />
+		<link href="../share/common/css/mui.picker.css" rel="stylesheet" />
+		<!--三级联动样式-->
+		<link href="../share/common/css/mui.poppicker.css" rel="stylesheet" />
+		<!--三级联动样式-->
+		<link href="css/information.css" rel="stylesheet" />
+		<script src="../share/common/js/mui.min.js"></script>
+		<script src="../share/common/js/vue.min.js"></script>
+		<script src="../share/common/js/getPicture.js"></script>
+		<script src="../share/common/js/mui.picker.js"></script>
+		<script src="../share/common/js/mui.poppicker.js"></script>
+		<script src="../share/common/js/HttpConnection.js"></script>
+		<script src="../share/common/js/goPage1.js"></script>
+		<script src="../share/common/js/_address.js"></script>
+		<script src="js/common.js"></script>
+		<script type="text/javascript" src='../share/common/js/jquery-3.2.1.min.js'>
+		</script>
+	</head>
+
+	<body>
+		<!-- 温馨提示 -->
+		<div class="orderNum">
+			<div class="bg">
+				<div class="title">温馨提示</div>
+				<div class="info">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;家长（小伙伴们）所填的信息部分无法修改，虚假或不负责任的填写，对你使用小学阅读吧及其旗下所有教育产品、赛事、兑换、预购、赠送及奖励活动等有直接影响，为了小伙伴们的健康成长体验，请认真填写，谢谢！</div>
+				<!--<span id="close" class="mui-icon mui-icon-close" style="color: white;"></span>-->
+				<!--<div class="xian"></div>-->
+				<!--按钮-->
+				<div class="btnZf">
+					<div class="btnZ1" id="goLogin">登录体验</div>
+					<div id="close" class="btnZ2">继续填写</div>
+				</div>
+			</div>
+		</div>
+		<!--主体-->
+		<div class="YDapp">
+			<input type="text" id="kweixin"  v-model="kweixin" />
+			<!--蒙版-->
+			<div class="maskZ" id="maskZ">
+				<!--弹框-->
+				<div class="frameZ">
+					<!--提示语-->
+					<div class="describeZ">
+						<div class="tipsZ">提示</div>
+						<div class="explainZ">
+							{{kInfo}}
+						</div>
+					</div>
+					<!--按钮-->
+					<div class="btnZf">
+						<div class="btnZ1" @tap="closeZ()">取消</div>
+						<div class="btnZ2" @tap="dialTest(kphone)">确认</div>
+					</div>
+				</div>
+			</div>
+			<!--  -->
+			<div id="contact" v-if="isContact">
+				<div class="header_box">
+					<h3>你的需求,</h3>
+					<h3>我们努力的动力!</h3>
+				</div>
+				<div class="body_box">
+					<div class="list">
+						<div class="list_header">
+							<p class="list_name">方式一：希望来电介绍服务</p>
+							<p class="list_mode">
+								<span>直通课程顾问</span>
+								<img class="dianhua" @tap.stop="maskZ(1)" src="images/dianhua.png" alt="" />
+							</p>
+						</div>
+						<div class="list_text">
+							<img class="edit edit1" v-show="oneMessage == '' && edit1" src="images/edit.png" alt="" />
+							<textarea class="text" @blur="tapText1('edit1')" @focus="tapText('edit1')" v-model="oneMessage"></textarea>
+							<p class="tishi">请留下手机号，时间段及希望解决问题</p>
+						</div>
+					</div>
+					<div class="list">
+						<div class="list_header">
+							<p class="list_name">方式二：希望加微信帮忙</p>
+							<p class="list_mode">
+								<span>复制微信号</span>
+								<img class="weixin" @tap.stop="maskZ(0)" src="images/weixin.png" alt="" />
+							</p>
+						</div>
+						<div class="list_text">
+							<img class="edit edit2" v-show="twoMessage == '' && edit2" src="images/edit.png" alt="" />
+							<textarea class="text" @blur="tapText1('edit2')" @focus="tapText('edit2')" v-model="twoMessage"></textarea>
+							<p class="tishi">请留下微信号，时间段及希望解决问题</p>
+						</div>
+					</div>
+					<div class="list">
+						<div class="list_header">
+							<p class="list_name">方式三：希望解决实质性问题</p>
+							<p class="list_mode">
+								<!--直通课程顾问
+								<img class="dianhua" src="images/dianhua.png" alt="" />-->
+							</p>
+						</div>
+						<div class="list_text">
+							<img class="edit edit3" v-show="threeMessage == '' && edit3" src="images/edit.png" alt="" />
+							<textarea class="text" @blur="tapText1('edit3')" @focus="tapText('edit3')" v-model="threeMessage"></textarea>
+							<p class="tishi">请留下微信号或手机号，时间段及希望解决问题</p>
+						</div>
+					</div>
+				</div>
+				<div class="footer_box">
+					<p class="tishi1">为了孩子读书与成长，希望我们随时保持真诚沟通!</p>
+					<p class="btn" @click="goLogin1()">登陆</p>
+				</div>
+			</div>
+			<div class="partOne" v-show="step == 'partOne'">
+				<a href="javascript:;" id='picture' style="position: relative;">
+					<img style="margin: .2rem .3rem" src="images/iconfont.png" />
+					<input type="file" accept="audio/*" v-model="imgInfo">
+					<p>上传头像</p>
+				</a>
+
+				<div class="mui-row">
+					<label class="mui-col-xs-3">孩子昵称:</label>
+					<input class="mui-col-xs-10" type="text" placeholder="请输入昵称" v-model="infoData.nickname">
+				</div>
+				<div class="mui-row">
+					<label class="mui-col-xs-3">孩子姓名:</label>
+					<input class="mui-col-xs-10" type="text" placeholder="请输入真实姓名" v-model="infoData.name">
+				</div>
+				<div class="mui-row">
+					<label class="mui-col-xs-3">孩子性别:</label>
+					<div class="gender">
+						<label class="mui-input-row mui-radio" v-for="(item,index) in list">
+							<input type="radio" name="index" :value="item.value" v-model="infoData.sex">
+							{{item.value}}
+						</label>
+					</div>
+				</div>
+				<div class="mui-row" @tap.stop="address('add')">
+					<label class="mui-col-xs-3">所在城市:</label>
+					<input class="mui-col-xs-10" type="text" placeholder="选择所在城市" v-model="infoData.address">
+				</div>
+
+				<div class="mui-row">
+					<label class="mui-col-xs-3">详细地址:</label>
+					<input class="mui-col-xs-10" type="text" placeholder="请输入详细地址" v-model="infoData.careful">
+				</div>
+				<div class="mui-row">
+					<label class="mui-col-xs-3">就读学校:</label>
+					<input class="mui-col-xs-10" type="text" placeholder="输入就读学校" v-model="infoData.school">
+				</div>
+				<div class="mui-row" @tap.stop="address('stage')">
+					<label class="mui-col-xs-3">孩子年级:</label>
+					<input class="mui-col-xs-10" type="text" placeholder="选择年级" v-model="infoData.stage">
+				</div>
+				<button class="btn" @tap.stop="sub()">完成</button>
+			</div>
+		</div>
+
+		<div id="output"></div>
+
+		<script type="text/javascript" src='js/info1.js'></script>
+		<script type="text/javascript" src="js/city.data-3.js"></script>
+
+		<script src="js/information.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			// var vConsole = new VConsole();
+			var myColse = document.getElementById("close");
+			myColse.onclick = function() {
+				document.getElementsByClassName("orderNum")[0].style.display = "none";
+			}
+			var myLogin = document.getElementById("goLogin");
+			myLogin.onclick = function() {
+				var data = {
+					backUrl: "../index.html",
+				}
+				muiGo.muiGoPage("../login/login.html", "../login/login.html", data);
+			}
+		</script>
+
+	</body>
+
+</html>
