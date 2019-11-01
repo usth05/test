@@ -14,20 +14,20 @@ var app = new Vue({
 		isUpload: null, //是否继续测评
 		number: null, //该做第几个类型
 		type: 0,
-        baifenbi:'',
-        sinUpPop:false,
-		name:'',
-        telephone:'',
-        info:'',
-        shortcoming:'',
+		baifenbi: '',
+		sinUpPop: false,
+		name: '',
+		telephone: '',
+		info: '',
+		shortcoming: '',
 	},
 	created: function () {
 		//加载数据
 		this.startFun()
-		setTimeout(()=>{
-			
-		console.log($(".progressBar")[0].style)
-		},500)
+		setTimeout(() => {
+
+			console.log($(".progressBar")[0].style)
+		}, 500)
 	},
 	methods: {
 		// 获取地址栏参数
@@ -52,7 +52,7 @@ var app = new Vue({
 			that.number = myData.list.number;
 			that.baifenbi = myData.list.baifenbi;
 			that.type = myData.list.type;
-			$(".progressBar").css("width",that.baifenbi+'%');
+			$(".progressBar").css("width", that.baifenbi + '%');
 		},
 		//跳转下一页 查看报告
 		goNextPage: function (url, list) {
@@ -99,6 +99,7 @@ var app = new Vue({
 					activateId: this.listData.activateId,
 				}
 				var listData = JSON.stringify(data);
+				localStorage.setItem("myData", listData);
 				window.location.href = "topicList.html?data=" + listData;
 				// goAh.muiGoPage("./topicList.html", "./topicList.html", data)
 			} else {
@@ -121,55 +122,55 @@ var app = new Vue({
 				// goAh.muiGoPage('selectGrade.html', 'selectGrade.html', data);
 			}
 		},
-		signUp:function(){
+		signUp: function () {
 			var _this = this;
-			if(this.baifenbi < 100) {
-            	if(this.name==''){
-                    mui.toast("学生姓名不能为空");
-                    return false;
-				}else if(this.telephone==''){
-                    mui.toast("联系方式不能为空");
-                    return false;
-				}else if(!(/^[1](([3][0-9])|([4][5-9])|([5][0-3,5-9])|([6][5,6])|([7][0-8])|([8][0-9])|([9][1,8,9]))[0-9]{8}$/.test(this.telephone))) {
-                    mui.toast("手机号码有误，请重填");
-                    return false;
-                }else if(this.info==''){
-                    mui.toast("学生现状不能为空");
-                    return false;
-				}else if(this.shortcoming==''){
-                    mui.toast("学生需求不能为空");
-                    return false;
-                }
+			if (this.baifenbi < 100) {
+				if (this.name == '') {
+					mui.toast("学生姓名不能为空");
+					return false;
+				} else if (this.telephone == '') {
+					mui.toast("联系方式不能为空");
+					return false;
+				} else if (!(/^[1](([3][0-9])|([4][5-9])|([5][0-3,5-9])|([6][5,6])|([7][0-8])|([8][0-9])|([9][1,8,9]))[0-9]{8}$/.test(this.telephone))) {
+					mui.toast("手机号码有误，请重填");
+					return false;
+				} else if (this.info == '') {
+					mui.toast("学生现状不能为空");
+					return false;
+				} else if (this.shortcoming == '') {
+					mui.toast("学生需求不能为空");
+					return false;
+				}
 				var param = {
 					userId: JSON.parse(localStorage.getItem('myInfo')).id,
 					mealId: this.listData.id,
-                    telephone:this.telephone,
-                    info:this.info,
-                    name:this.name,
-                    shortcoming:this.shortcoming,
+					telephone: this.telephone,
+					info: this.info,
+					name: this.name,
+					shortcoming: this.shortcoming,
 				}
 				var Url = _serverAddr2 + "appWebpage/insertAssessEntered.json";
 				http.getJSON(Url, param, function (data) {
 					if (data.success) {
 						mui.toast("报名成功");
-                        _this.telephone='';
-                        _this.name='';
-                        _this.info='';
-                        _this.shortcoming='';
-                        _this.sinUpPopFun();
-					}else{
+						_this.telephone = '';
+						_this.name = '';
+						_this.info = '';
+						_this.shortcoming = '';
+						_this.sinUpPopFun();
+					} else {
 						mui.toast(data.msg);
-                        _this.sinUpPopFun();
-                        _this.telephone='';
-                        _this.name='';
-                        _this.info='';
-                        _this.shortcoming='';
+						_this.sinUpPopFun();
+						_this.telephone = '';
+						_this.name = '';
+						_this.info = '';
+						_this.shortcoming = '';
 					}
 				})
-			}else{
+			} else {
 				mui.toast("本次活动已结束，敬请期待下次活动的开始");
 			}
-			
+
 		},
 		closeZ: function () {
 			$("#maskZ").hide()
@@ -193,7 +194,7 @@ var app = new Vue({
 			this.closeZ1()
 			// plus.device.dial('18167140039', true);
 		},
-        sinUpPopFun:function(){
+		sinUpPopFun: function () {
 			this.sinUpPop = !this.sinUpPop;
 		},
 	},

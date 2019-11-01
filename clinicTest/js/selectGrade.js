@@ -160,7 +160,8 @@ var app = new Vue({
 					} else if(that.level == 3) {
 						listData.typeId = that.typeThreeId;
 					}
-                    var listData1 = JSON.stringify(listData);
+					var listData1 = JSON.stringify(listData);
+					localStorage.setItem("myData",listData1);
                     window.location.href="topicList.html?data="+listData1;
 					// goAh.muiGoPage("./topicList.html", "./topicList.html", listData)
 				} else {

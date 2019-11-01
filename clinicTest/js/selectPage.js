@@ -25,42 +25,43 @@ var app = new Vue({
 		isSubmit: false, //是否显示提交
 		selectActive: -1, //选中的index
 	},
-	created: function() {
+	created: function () {
 		var that = this;
 		this.startFun();
-		mui.plusReady(function() {
-			mui.back = function() {}
-			plus.key.addEventListener("backbutton", function() {
+		mui.plusReady(function () {
+			mui.back = function () { }
+			plus.key.addEventListener("backbutton", function () {
 				that.askBack();
 			});
 		})
 	},
 	methods: {
-        // 获取地址栏参数
-        getUrlParam: function(name) {
-            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-            var r = decodeURIComponent(window.location.search).substr(1).match(reg);  //匹配目标参数
-            if (r != null) return unescape(r[2]); return null; //返回参数值
-        },
+		// 获取地址栏参数
+		getUrlParam: function (name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			var r = decodeURIComponent(window.location.search).substr(1).match(reg);  //匹配目标参数
+			if (r != null) return unescape(r[2]); return null; //返回参数值
+		},
 		//打开询问是否退出弹窗
-		askBack: function() {
+		askBack: function () {
 			$("#maskZ").show();
 		},
 		//隐藏退出提示框
-		closeMaskZ: function() {
+		closeMaskZ: function () {
 			$("#maskZ").hide();
 		},
 		//返回上一页并刷新，并关闭当前页
-		goBack: function() {
-			history.go(-3);
+		goBack: function () {
+			var data = "?myInfo=" + localStorage.getItem("myInfo") + "&data=" + localStorage.getItem("myData")
+			window.location.href = "topicList.html" + data;
 		},
 		//返回入口页并刷新，关闭其子webView
-		goOldBack: function() {
-        	var data = {};
-            var listData1 = JSON.stringify(data);
-            window.location.href= "clinicTest.html?data="+listData1;
+		goOldBack: function () {
+			var data = {};
+			var listData1 = JSON.stringify(data);
+			window.location.href = "clinicTest.html?data=" + listData1;
 		},
-		startFun: function() {
+		startFun: function () {
 			var that = this;
 			var myData = JSON.parse(this.getUrlParam('data'));
 			var list = myData.list;
@@ -74,8 +75,8 @@ var app = new Vue({
 				number: that.number
 			}
 			var Url = _serverAddr2 + "appWebpage/selectAssessQuestion.json";
-			http.getJSON(Url, param, function(res) {
-				if(res.success) {
+			http.getJSON(Url, param, function (res) {
+				if (res.success) {
 					that.listData = res.data;
 					that.listDataNum = res.data.length;
 					that.nextQuestion();
@@ -83,16 +84,16 @@ var app = new Vue({
 			})
 		},
 		//定时器
-		timerFun: function() {
+		timerFun: function () {
 			var that = this;
 			var seconds = that.currentData.seconds;
 			that.seconds = seconds;
-			if(seconds) {
-				that.t = setInterval(function() {
+			if (seconds) {
+				that.t = setInterval(function () {
 					that.seconds--;
-					if(that.seconds <= 0) {
+					if (that.seconds <= 0) {
 						clearInterval(that.t);
-						setTimeout(function() {
+						setTimeout(function () {
 							that.selecedFun();
 						}, 1000)
 					}
@@ -100,7 +101,7 @@ var app = new Vue({
 			}
 		},
 		//选中事件函数
-		selecedFun: function(item) {
+		selecedFun: function (item) {
 			var _this = this;
 			var obj = {
 				userId: this.userId, //用户id
@@ -111,19 +112,19 @@ var app = new Vue({
 			this.selectActive = item ? item.id : -1;
 			this.uacList.push(obj);
 			//100毫秒后更新数据
-			setTimeout(function() {
+			setTimeout(function () {
 				_this.nextQuestion();
 			}, 100)
 		},
 		//跳转下一题
-		nextQuestion: function() {
+		nextQuestion: function () {
 			var _this = this;
 			clearInterval(this.t);
 			var index = this.currentIndex; //获取题号
-			if(index < this.listDataNum) {
+			if (index < this.listDataNum) {
 				this.currentData = this.listData[index]; //获取下一题并赋值给currentData
 				this.currentIndex++;
-				setTimeout(function() {
+				setTimeout(function () {
 					_this.timerFun();
 				})
 			} else {
@@ -133,7 +134,7 @@ var app = new Vue({
 		/* *
 		 	提交答案逻辑
 		 * */
-		submit: function() {
+		submit: function () {
 			var that = this;
 			var uacList = JSON.stringify(this.uacList)
 			var param = {
@@ -142,18 +143,18 @@ var app = new Vue({
 				type: 1,
 			}
 			var Url = _serverAddr2 + "appWebpage/insertUserAssess.json";
-			http.getJSON(Url, param, function(res) {
-				if(res.success) {
+			http.getJSON(Url, param, function (res) {
+				if (res.success) {
 					mui.toast("本模块题目已答完,请继续下一模块");
-					if(that.isStatus) {
+					if (that.isStatus) {
 						var urlStatus = _serverAddr2 + 'appWebpage/updateExamStatus.json';
 						var httpData = {
 							activateId: that.activateId,
 						};
 						var httpStatus = new HttpConnection();
-						httpStatus.getJSON(urlStatus, httpData, function(res) {
-							if(res.success) {
-								setTimeout(function() {
+						httpStatus.getJSON(urlStatus, httpData, function (res) {
+							if (res.success) {
+								setTimeout(function () {
 									mui.toast("本次测评已完成");
 									that.goOldBack();
 								}, 1000)
@@ -162,27 +163,27 @@ var app = new Vue({
 							}
 						})
 					} else {
-						setTimeout(function() {
+						setTimeout(function () {
 							that.goBack();
 						}, 1000)
 					}
 				}
 			})
 		},
-        pushHistory:function() {
-            var state = {
-                title: "title",
-                url: "#"
-            };
-            window.history.pushState(state, "title", "#");
-        },
+		pushHistory: function () {
+			var state = {
+				title: "title",
+				url: "#"
+			};
+			window.history.pushState(state, "title", "#");
+		},
 	},
-	mounted: function() {
+	mounted: function () {
 		// this.scrollInit();
 		var that = this;
-		this.pushHistory(); 
-        window.addEventListener("popstate", function(e) {
-            that.askBack();
-        }, false);
+		this.pushHistory();
+		window.addEventListener("popstate", function (e) {
+			that.askBack();
+		}, false);
 	}
 })

@@ -9,6 +9,8 @@ var app = new Vue({
 	el: '.YDapp',
 	data: {
 		listData: [], //获取到的所有题目数据
+		listDataNum: 0, //总题数
+		currentIndex: 0, //当前题目
 		currentData: {}, //当前问答的问题数据
 		topName: '', //顶部名称
 		userId: -1, //用户id
@@ -39,19 +41,20 @@ var app = new Vue({
 		seconds: '', //答题时间
 		isStatus: false, //是否可以提交测试完成状态
 	},
-	created: function () {
+	created: function() {
 		this.startFun()
 		//默认数据
 	},
 	methods: {
 		// 获取地址栏参数
-		getUrlParam: function (name) {
+		getUrlParam: function(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-			var r = decodeURIComponent(window.location.search).substr(1).match(reg);  //匹配目标参数
-			if (r != null) return unescape(r[2]); return null; //返回参数值
+			var r = decodeURIComponent(window.location.search).substr(1).match(reg); //匹配目标参数
+			if(r != null) return unescape(r[2]);
+			return null; //返回参数值
 		},
 		//打开询问是否退出弹窗
-		askBack: function () {
+		askBack: function() {
 			this.showMaskZ();
 		},
 		//返回上一页并刷新，并关闭当前页
@@ -60,11 +63,11 @@ var app = new Vue({
 		},
 		//返回入口页并刷新，关闭其子webView
 		goOldBack: function() {
-        	var data = {};
-            var listData1 = JSON.stringify(data);
-            window.location.href= "clinicTest.html?data="+listData1;
+			var data = {};
+			var listData1 = JSON.stringify(data);
+			window.location.href = "clinicTest.html?data=" + listData1;
 		},
-		startFun: function () {
+		startFun: function() {
 			var that = this;
 			var myData = JSON.parse(this.getUrlParam('data'));
 			var list = myData.list;
@@ -81,39 +84,36 @@ var app = new Vue({
 				number: that.number
 			}
 			var Url = _serverAddr2 + "appAssess/selectAssessQuestion.json";
-			http.getJSON(Url, param, function (res) {
-				if (res.success) {
+			http.getJSON(Url, param, function(res) {
+				if(res.success) {
 					that.listData = res.data;
-					that.currentData = res.data[0];
-					that.currentData.index = 1;
-					that.type = res.data[0].type;
-					that.selecedobj.userId = that.userId;
-					that.timerFun();
-					if (that.currentData.audioUrl) {
-						setTimeout(function () {
-							$("#audio")[0].load();
-							$("#audio")[0].play();
-						}, 200)
-					}
-					// if (that.currentData.videoUrl) {
-					// 	setTimeout(function () {
-					// 		that.plays(that.currentData.videoPhoto, that.currentData.videoUrl)
-					// 	}, 200)
-					// }
+					that.listDataNum = listData.length;
+					that.nextQuestion();
+//					that.currentData = res.data[0];
+//					that.currentIndex = 1;
+//					that.type = res.data[0].type;
+//					that.selecedobj.userId = that.userId;
+//					that.timerFun();
+//					if(that.currentData.audioUrl) {
+//						setTimeout(function() {
+//							$("#audio")[0].load();
+//							$("#audio")[0].play();
+//						}, 200)
+//					}
 				}
 			})
 		},
 		//定时器
-		timerFun: function () {
+		timerFun: function() {
 			var that = this;
 			var seconds = that.currentData.seconds;
 			that.seconds = seconds;
-			if (seconds) {
-				that.t = setInterval(function () {
+			if(seconds) {
+				that.t = setInterval(function() {
 					that.seconds--;
-					if (that.seconds <= 0) {
+					if(that.seconds <= 0) {
 						clearInterval(that.t);
-						setTimeout(function () {
+						setTimeout(function() {
 							that.selecedFun();
 						}, 1000)
 					}
@@ -123,11 +123,11 @@ var app = new Vue({
 		/* *
 		 	提交答案逻辑
 		 * */
-		submit: function () {
+		submit: function() {
 			var that = this;
 			var uacList = this.uacList;
-			if (uacList.length < this.listData.length) {
-				if (uacList.length == this.listData.length - 1) {
+			if(uacList.length < this.listData.length) {
+				if(uacList.length == this.listData.length - 1) {
 					this.selecedFun();
 				} else {
 					mui.toast("请答完所有题目后再提交")
@@ -141,25 +141,25 @@ var app = new Vue({
 				type: 3,
 			}
 			var Url = _serverAddr2 + "appAssess/insertUserAssess.json";
-			http.getJSON(Url, param, function (res) {
-				if (res.success) {
+			http.getJSON(Url, param, function(res) {
+				if(res.success) {
 					mui.toast("本分类题目已答完,请继续");
-					if (that.isStatus) {
+					if(that.isStatus) {
 						var urlStatus = _serverAddr2 + 'appAssess/updateExamStatus.json';
 						var httpData = {
 							activateId: that.activateId,
 						};
 						var httpStatus = new HttpConnection();
-						httpStatus.getJSON(urlStatus, httpData, function (res) {
-							if (res.success) {
-								setTimeout(function () {
+						httpStatus.getJSON(urlStatus, httpData, function(res) {
+							if(res.success) {
+								setTimeout(function() {
 									mui.toast("本次测评已完成");
 									that.goOldBack();
 								}, 200)
 							}
 						})
 					} else {
-						setTimeout(function () {
+						setTimeout(function() {
 							that.goBack();
 						}, 300)
 					}
@@ -167,29 +167,29 @@ var app = new Vue({
 			})
 		},
 		//获取题目类型
-		getAssessExam: function () {
+		getAssessExam: function() {
 			var that = this;
 			var paramAssess = {
 				typeId: this.typeId,
 				grade: this.grade,
 			}
 			var UrlAssess = _serverAddr2 + "appAssess/selectAssessExam.json";
-			http.getJSON(UrlAssess, paramAssess, function (res) {
-				if (res.success) {
+			http.getJSON(UrlAssess, paramAssess, function(res) {
+				if(res.success) {
 					that.listData = res.data;
 				}
 			})
 		},
 		//显示退出提示框
-		showMaskZ: function () {
+		showMaskZ: function() {
 			$("#maskZ").show();
 		},
 		//隐藏退出提示框
-		closeMaskZ: function () {
+		closeMaskZ: function() {
 			$("#maskZ").hide();
 		},
 		//上传数据处理
-		selecedFun: function () {
+		selecedFun: function() {
 			var that = this;
 			var type = this.type;
 			var index = this.currentData.index; // 获取到当前是第几题
@@ -197,37 +197,37 @@ var app = new Vue({
 				userId: this.userId,
 				questionId: this.currentData.id,
 			}
-			if (this.audioUrl) {
+			if(this.audioUrl) {
 				files1 = [];
 				appendFile1(that.audioUrl);
 				upimg1()
 			}
-			setTimeout(function () {
-				if (type == 0) { //视频
-					if (that.videoUrl) {
+			setTimeout(function() {
+				if(type == 0) { //视频
+					if(that.videoUrl) {
 						selecedobj.userAnswer = that.videoUrl;
 						selecedobj.userPhoto = that.imgUrl;
 					} else {
 						selecedobj.userAnswer = '';
 						selecedobj.userPhoto = '';
 					}
-				} else if (type == 1) { //音频
+				} else if(type == 1) { //音频
 					that.audioUrl ? selecedobj.userAnswer = imgurl : selecedobj.userAnswer = '';
-				} else if (type == 2) { //文本
+				} else if(type == 2) { //文本
 					that.textMode ? selecedobj.userAnswer = that.textMode : selecedobj.userAnswer = '';
-				} else if (type == 3) { // 图片
+				} else if(type == 3) { // 图片
 					that.imgUrl ? selecedobj.userAnswer = that.imgUrl : selecedobj.userAnswer = '';
 				}
-				if (selecedobj.userAnswer || that.seconds <= 0) {
+				if(selecedobj.userAnswer || that.seconds <= 0) {
 					that.uacList[index - 1] = selecedobj;
 				} else {
 					mui.toast("请养成良好的习惯不要跳题");
 					return;
 				}
-				if (that.currentData.index != that.listData.length) {
+				if(that.currentData.index != that.listData.length) {
 					that.nextQuestion();
 				} else {
-					$(".userAnswer").attr("maxlength", "0").click(function () {
+					$(".userAnswer").attr("maxlength", "0").click(function() {
 						mui.toast("答题时间已过，不能继续答题");
 						return;
 					})
@@ -235,37 +235,46 @@ var app = new Vue({
 			}, 300)
 		},
 		//跳转下一题
-		nextQuestion: function () {
-			var that = this;
-			files = [];
+//		nextQuestion: function() {
+//			var that = this;
+//			files = [];
+//			clearInterval(this.t);
+//			this.imgUrl = '';
+//			this.audioUrl = '';
+//			this.videoUrl = '';
+//			this.textMode = '';
+//			this.myPlayShow = 0;
+//			var index = this.currentData.index; //当前问题数据
+//			var nextData = this.listData[index]; //获取到下一个问题数据
+//			var type = nextData.type;
+//			this.type = type;
+//			nextData.index = index + 1;
+//			this.currentData = nextData;
+//			if(this.currentData.audioUrl) {
+//				setTimeout(function() {
+//					$("#audio")[0].load();
+//					$("#audio")[0].play();
+//				}, 300)
+//			}
+//			this.timerFun();
+//		},
+		//跳转下一题
+		nextQuestion: function() {
+			var _this = this;
 			clearInterval(this.t);
-			this.imgUrl = '';
-			this.audioUrl = '';
-			this.videoUrl = '';
-			this.textMode = '';
-			this.myPlayShow = 0;
-			var index = this.currentData.index; //当前问题数据
-			var nextData = this.listData[index]; //获取到下一个问题数据
-			var type = nextData.type;
-			this.type = type;
-			nextData.index = index + 1;
-			this.currentData = nextData;
-			if (this.currentData.audioUrl) {
-				setTimeout(function () {
-					$("#audio")[0].load();
-					$("#audio")[0].play();
-					//audioInit(".myAudio", that.currentData.audioUrl)
-				}, 300)
+			var index = this.currentIndex; //获取题号
+			if(index < this.listDataNum) {
+				this.currentData = this.listData[index]; //获取下一题并赋值给currentData
+				this.currentIndex++;
+				setTimeout(function() {
+					_this.timerFun();
+				})
+			} else {
+				this.isSubmit = true;
 			}
-			// if (this.currentData.videoUrl) {
-			// 	setTimeout(function () {
-			// 		// that.plays(that.currentData.videoPhoto, that.currentData.videoUrl)
-			// 	}, 300)
-			// }
-			this.timerFun();
 		},
 		//视频初始化
-		plays: function (photo, url) {
+		plays: function(photo, url) {
 			var that = this;
 			that.myImg = photo;
 			var html = '<div class="mui-video-Container" id="video_Container">' +
@@ -286,10 +295,10 @@ var app = new Vue({
 				iospay: false, //如果是IOS系统是否采用苹果系统自带播放器, 可以在浏览器或微信中，全屏观看视频
 				drag: true, //禁止拖动,调节,音量和亮度 
 				isfull: false, //是否显示全屏按钮
-				prompt: function (video) //当开启isMobile时,这里可以写提示用户的内容,h5+环境才有效
+				prompt: function(video) //当开启isMobile时,这里可以写提示用户的内容,h5+环境才有效
 				{
-					mui.confirm('你当前处于移动手机网络将会消耗手机流量，是否继续播放？', '提示', ["取消", "确定"], function (e) {
-						if (e.index == 1) {
+					mui.confirm('你当前处于移动手机网络将会消耗手机流量，是否继续播放？', '提示', ["取消", "确定"], function(e) {
+						if(e.index == 1) {
 							video.play();
 						}
 					}, "div");
@@ -297,13 +306,13 @@ var app = new Vue({
 			});
 		},
 		//上传视频封面
-		myImgUpload: function () {
+		myImgUpload: function() {
 			imgUpload();
 		},
 		//添加和修改视频
-		myVideoUpload: function () {
+		myVideoUpload: function() {
 			var that = this;
-			if (that.imgUrl == "") {
+			if(that.imgUrl == "") {
 				mui.toast("请先上传封面")
 			} else {
 				//调取oss方法
@@ -311,10 +320,10 @@ var app = new Vue({
 			}
 		},
 		//播放视频
-		play1: function () {
+		play1: function() {
 			var isPlay = this.isPlay;
 			var playV = document.getElementById("playV");
-			if (!isPlay) {
+			if(!isPlay) {
 				playV.play();
 			} else {
 				playV.pause();
@@ -322,16 +331,16 @@ var app = new Vue({
 			this.isPlay = !isPlay;
 		},
 		//录音功能
-		myRecord: function (v) {
+		myRecord: function(v) {
 			var that = this
-			if (v == 0) {
+			if(v == 0) {
 				//开始录音
 				that.myPeat = false;
 				that.mySP = 1;
 				//调取开始录音函数
 				$("#audio")[0].pause();
 				that.startRecord();
-			} else if (v == 1) {
+			} else if(v == 1) {
 				//停止录音
 				that.myPeat = true;
 				that.mySP = 0;
@@ -341,27 +350,27 @@ var app = new Vue({
 			}
 		},
 		//开始录音
-		startRecord: function () {
+		startRecord: function() {
 			var that = this;
 			that.r = plus.audio.getRecorder();
 			mui.toast('开始录音')
-			if (that.r == null) {
+			if(that.r == null) {
 				mui.toast('录音对象未获取');
 				return;
 			}
 			that.r.record({
 				filename: '_doc/audio/'
-			}, function (p) {
+			}, function(p) {
 				that.audioUrl = p;
-				plus.io.resolveLocalFileSystemURL(p, function (entry) { }, function (e) {
+				plus.io.resolveLocalFileSystemURL(p, function(entry) {}, function(e) {
 					mui.toast('读取录音文件错误：' + e.message);
 				});
-			}, function (e) {
+			}, function(e) {
 				mui.toast('录音失败：' + e.message);
 			});
 		},
 		//结束录音函数
-		stopRecord: function () {
+		stopRecord: function() {
 			var that = this
 			mui.toast('录音结束')
 			that.r.stop();
@@ -369,18 +378,18 @@ var app = new Vue({
 			that.myPlayShow = 1
 		},
 		//暂停播放录音
-		stopPlay: function () {
+		stopPlay: function() {
 			var that = this
 			// 操作播放对象
-			if (that.audioUrl) {
+			if(that.audioUrl) {
 				p.stop();
 			}
 		},
 		//播放录音
-		play: function (v) {
+		play: function(v) {
 			var that = this
-			if (v == 2) { //初始化
-				if (that.audioUrl) {
+			if(v == 2) { //初始化
+				if(that.audioUrl) {
 					that.myPlayShow = 2
 					that.myStop = 1
 					p = plus.audio.createPlayer(that.audioUrl);
@@ -394,12 +403,12 @@ var app = new Vue({
 				} else {
 					mui.toast('请先录音')
 				}
-			} else if (v == 1) { //暂停
+			} else if(v == 1) { //暂停
 				that.stopPlay();
 				that.myPlayShow = 1
 				that.myStop = 0;
-			} else if (v == 0) { //播放
-				if (that.audioUrl) {
+			} else if(v == 0) { //播放
+				if(that.audioUrl) {
 					that.myPlayShow = 2
 					that.myStop = 1
 					p = plus.audio.createPlayer(that.audioUrl);
@@ -418,11 +427,11 @@ var app = new Vue({
 	},
 	mounted() {
 		var that = this;
-		mui.plusReady(function () {
-			mui.back = function () {
+		mui.plusReady(function() {
+			mui.back = function() {
 
 			}
-			plus.key.addEventListener("backbutton", function () {
+			plus.key.addEventListener("backbutton", function() {
 				that.askBack();
 			});
 		})
