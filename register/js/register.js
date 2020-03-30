@@ -55,6 +55,7 @@ var vm = new Vue({
 				}, 1000)
 				var param = {
 					mobile: phone,
+					type:1
 				};
 				//获取验证码
 				var url1 = _serverAddr + "user/sendCode.json";
